@@ -8,3 +8,10 @@ export interface Question {
 }
 
 export type QuizState = 'START' | 'QUIZ' | 'RESULT';
+
+export interface UserAnswer {
+    questionId: number;
+    selectedIndices: number[]; // For MC
+    isCorrect: boolean;
+    isRevealed: boolean; // Is the answer currently revealed/checked?
+}

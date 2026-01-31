@@ -1,24 +1,44 @@
-import React, { useState } from 'react';
-import type { Question } from '../types';
+import React, { useState, useEffect } from 'react';
+import type { Question, UserAnswer } from '../types';
 
 interface QuizCardProps {
     question: Question;
-    onNext: (isCorrect: boolean) => void;
+    savedAnswer?: UserAnswer;
+    onAnswer: (answer: UserAnswer) => void;
+    onNext: () => void;
+    onPrevious: () => void;
+    showPrevious: boolean;
+    isLast: boolean;
 }
 
-export const QuizCard: React.FC<QuizCardProps> = ({ question, onNext }) => {
+export const QuizCard: React.FC<QuizCardProps> = ({
+    question,
+    savedAnswer,
+    onAnswer,
+    onNext,
+    onPrevious,
+    showPrevious,
+    isLast
+}) => {
     const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
     const [isRevealed, setIsRevealed] = useState(false);
+    const [isCorrect, setIsCorrect] = useState(false);
 
-    // Reset state when question changes
-    React.useEffect(() => {
-        setSelectedIndices([]);
-        setIsRevealed(false);
-    }, [question.id]);
+    // Initialize from saved state or reset
+    useEffect(() => {
+        if (savedAnswer) {
+            setSelectedIndices(savedAnswer.selectedIndices);
+            setIsRevealed(savedAnswer.isRevealed);
+            setIsCorrect(savedAnswer.isCorrect);
+        } else {
+            setSelectedIndices([]);
+            setIsRevealed(false);
+            setIsCorrect(false);
+        }
+    }, [question.id, savedAnswer]);
 
     const handleOptionClick = (index: number) => {
-        if (isRevealed) return; // Prevent changing after reveal
-
+        if (isRevealed) return;
         setSelectedIndices(prev =>
             prev.includes(index)
                 ? prev.filter(i => i !== index)
@@ -26,23 +46,52 @@ export const QuizCard: React.FC<QuizCardProps> = ({ question, onNext }) => {
         );
     };
 
+    const saveState = (revealed: boolean, correct: boolean) => {
+        onAnswer({
+            questionId: question.id,
+            selectedIndices: selectedIndices,
+            isCorrect: correct,
+            isRevealed: revealed
+        });
+    };
+
     const checkMultipleChoice = () => {
+        const selectedSorted = [...selectedIndices].sort((a, b) => a - b);
+        const correctSorted = [...question.correctIndices].sort((a, b) => a - b);
+        const correct = JSON.stringify(selectedSorted) === JSON.stringify(correctSorted);
+
         setIsRevealed(true);
+        setIsCorrect(correct);
+        saveState(true, correct);
     };
 
-    const handleSelfEvaluation = (isCorrect: boolean) => {
-        onNext(isCorrect);
+    const handleSelfEvaluation = (correct: boolean) => {
+        setIsCorrect(correct);
+        setIsRevealed(true); // Should already be true if we see buttons, but good for sanity
+        saveState(true, correct);
+        // Auto-advance or let user click next? 
+        // Requirement said "confirm". Let's update state and let them click next.
     };
 
-    // Multiple Choice Logic
-    if (question.type === 'multiple_choice' && question.options.length > 0) {
-        const isCorrect = JSON.stringify([...selectedIndices].sort()) === JSON.stringify([...question.correctIndices].sort());
-
-        return (
-            <div className="card">
+    // Render Logic
+    return (
+        <div className="card">
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
                 <h3 className="text-secondary">Question {question.id}</h3>
-                <p className="question-text">{question.question}</p>
+                {isRevealed && (
+                    <span style={{
+                        color: isCorrect ? 'var(--success)' : 'var(--error)',
+                        fontWeight: 'bold'
+                    }}>
+                        {isCorrect ? '✓ Correct' : '✗ Incorrect'}
+                    </span>
+                )}
+            </div>
 
+            <p className="question-text">{question.question}</p>
+
+            {/* Multiple Choice Options */}
+            {question.type === 'multiple_choice' && (
                 <div className="options-list">
                     {question.options.map((option, idx) => {
                         const isSelected = selectedIndices.includes(idx);
@@ -51,7 +100,7 @@ export const QuizCard: React.FC<QuizCardProps> = ({ question, onNext }) => {
                         let className = "option-item";
                         if (isRevealed) {
                             if (isCorrectOption) className += " correct";
-                            else if (isSelected) className += " wrong"; // Selected but wrong
+                            else if (isSelected) className += " wrong";
                         } else {
                             if (isSelected) className += " selected";
                         }
@@ -68,71 +117,102 @@ export const QuizCard: React.FC<QuizCardProps> = ({ question, onNext }) => {
                         );
                     })}
                 </div>
+            )}
 
-                {!isRevealed ? (
-                    <button className="btn btn-primary btn-block" onClick={checkMultipleChoice} disabled={selectedIndices.length === 0}>
-                        Check Answer
-                    </button>
-                ) : (
-                    <div className="answer-reveal">
-                        <p className="answer-label">Result</p>
-                        <h4 style={{ color: isCorrect ? 'var(--success)' : 'var(--error)' }}>
-                            {isCorrect ? 'Correct!' : 'Incorrect'}
-                        </h4>
-                        <p style={{ marginTop: '0.5rem', opacity: 0.8 }}>
-                            {isCorrect ? 'Great job.' : `The correct answer(s): ${question.correctIndices.map(i => String.fromCharCode(97 + i)).join(', ')}`}
-                        </p>
-                        <div style={{ marginTop: '1rem' }}>
-                            <button className="btn btn-primary" onClick={() => onNext(isCorrect)}>
-                                Next Question
-                            </button>
-                        </div>
-                        {question.answerText && (
-                            <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                                <p className="answer-label">Explanation / Full Text</p>
-                                <p>{question.answerText}</p>
-                            </div>
-                        )}
-                    </div>
-                )}
-            </div>
-        );
-    }
-
-    // Open Question Logic (or Fallback for parsed glitches)
-    return (
-        <div className="card">
-            <h3 className="text-secondary">Question {question.id}</h3>
-            <p className="question-text">{question.question}</p>
-
+            {/* Actions Area */}
             {!isRevealed ? (
-                <button className="btn btn-primary" onClick={() => setIsRevealed(true)}>
-                    Show Answer
-                </button>
+                <div style={{ marginTop: '2rem' }}>
+                    {question.type === 'multiple_choice' ? (
+                        <button
+                            className="btn btn-primary btn-block"
+                            onClick={checkMultipleChoice}
+                            disabled={selectedIndices.length === 0}
+                        >
+                            Check Answer
+                        </button>
+                    ) : (
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => setIsRevealed(true)}
+                        >
+                            Show Answer
+                        </button>
+                    )}
+                </div>
             ) : (
                 <div className="answer-reveal">
-                    <p className="answer-label">Correct Answer</p>
-                    <p style={{ marginBottom: '1.5rem', whiteSpace: 'pre-wrap' }}>{question.answerText}</p>
+                    {question.type === 'multiple_choice' ? (
+                        <div>
+                            <p className="answer-label">Result</p>
+                            <p style={{ marginBottom: '1rem' }}>
+                                {isCorrect ? 'You got it right!' : `Correct answer(s): ${question.correctIndices.map(i => String.fromCharCode(97 + i)).join(', ')}`}
+                            </p>
+                        </div>
+                    ) : (
+                        <div>
+                            <p className="answer-label">Correct Answer</p>
+                            <p style={{ marginBottom: '1.5rem', whiteSpace: 'pre-wrap' }}>{question.answerText}</p>
 
-                    <p className="answer-label">Did you get it right?</p>
-                    <div className="self-check-buttons">
-                        <button
-                            className="btn btn-primary"
-                            style={{ background: 'var(--success)' }}
-                            onClick={() => handleSelfEvaluation(true)}
-                        >
-                            Yes, Correct
-                        </button>
-                        <button
-                            className="btn btn-primary"
-                            style={{ background: 'var(--error)' }}
-                            onClick={() => handleSelfEvaluation(false)}
-                        >
-                            No, Incorrect
-                        </button>
-                    </div>
+                            {/* Only show evaluation buttons if we haven't graded this yet? 
+                   Actually, user might want to change their self-grade. 
+                   But usually history is immutable. 
+                   Let's check if 'savedAnswer' exists. If so, show what they picked.
+               */}
+                            {!savedAnswer ? (
+                                <div className="self-check-buttons">
+                                    <button
+                                        className="btn btn-primary"
+                                        style={{ background: 'var(--success)' }}
+                                        onClick={() => handleSelfEvaluation(true)}
+                                    >
+                                        Yes, I knew it
+                                    </button>
+                                    <button
+                                        className="btn btn-primary"
+                                        style={{ background: 'var(--error)' }}
+                                        onClick={() => handleSelfEvaluation(false)}
+                                    >
+                                        No, missed it
+                                    </button>
+                                </div>
+                            ) : (
+                                <p style={{ fontStyle: 'italic', opacity: 0.8 }}>
+                                    You marked this as: <strong>{savedAnswer.isCorrect ? 'Correct' : 'Incorrect'}</strong>
+                                </p>
+                            )}
+                        </div>
+                    )}
+
+                    {/* Detailed Explanation / Full Text always shown after reveal */}
+                    {question.type === 'multiple_choice' && question.answerText && (
+                        <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+                            <p className="answer-label">Explanation / Full Text</p>
+                            <p>{question.answerText}</p>
+                        </div>
+                    )}
                 </div>
             )}
+
+            {/* Navigation Footer */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem', paddingTop: '1rem', borderTop: '1px solid var(--glass-border)' }}>
+                <button
+                    className="btn btn-secondary"
+                    onClick={onPrevious}
+                    disabled={!showPrevious}
+                    style={{ visibility: showPrevious ? 'visible' : 'hidden' }}
+                >
+                    ← Previous
+                </button>
+
+                {/* Show Next only if revealed (answered) OR if we are reviewing history (savedAnswer exists)
+            Actually user wants to skip? Probably not. Enforce answering.
+         */}
+                {(isRevealed || savedAnswer) && (
+                    <button className="btn btn-primary" onClick={onNext}>
+                        {isLast ? 'Finish Quiz' : 'Next →'}
+                    </button>
+                )}
+            </div>
         </div>
     );
 };

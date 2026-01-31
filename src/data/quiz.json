@@ -706,35 +706,62 @@
   },
   {
     "id": 55,
-    "question": "Ordnen Sie die folgenden Verfahren zum Speichern des JWT beim Client nach ihrer Sicherheit.\na.In einem HTTP-only Cookie\nb.In einem normalen Cookie\nc.In einer lokalen Variable",
-    "type": "open",
-    "options": [],
+    "question": "Ordnen Sie die folgenden Verfahren zum Speichern des JWT beim Client nach ihrer Sicherheit.",
+    "type": "multiple_choice",
+    "options": [
+      "In einem HTTP-only Cookie",
+      "In einem normalen Cookie",
+      "In einer lokalen Variable"
+    ],
     "answerText": "a.keine Gefahr vor XSS b.Gefahr vor XSS c.geringe Gefahr vor XSS",
-    "correctIndices": []
+    "correctIndices": [
+      0,
+      1,
+      2
+    ]
   },
   {
     "id": 56,
-    "question": "Sie sind Hacker und haben ein Jwt abgefangen, wie kommen Sie an den Inhalt?\na.Gar nicht, dafür bräuchte ich das Secret.\nb.Ich kann das JWT mit einem Online-Decoder entschlüsseln.\nc.Ich kann das JWT einfach mit einem Base64 in Text umwandeln.",
-    "type": "open",
-    "options": [],
+    "question": "Sie sind Hacker und haben ein Jwt abgefangen, wie kommen Sie an den Inhalt?",
+    "type": "multiple_choice",
+    "options": [
+      "Gar nicht, dafür bräuchte ich das Secret.",
+      "Ich kann das JWT mit einem Online-Decoder entschlüsseln.",
+      "Ich kann das JWT einfach mit einem Base64 in Text umwandeln."
+    ],
     "answerText": "Ich kann das JWT einfach mit einem Base64 in Text umwandeln.",
-    "correctIndices": []
+    "correctIndices": [
+      2
+    ]
   },
   {
     "id": 57,
-    "question": "Was macht die Methode sign der JavaScript-Bibliothek jsonwebtoken?\na.Sie verschlüsselt und signiert ein JSON-Objekt.\nb.Sie verschlüsselt ein JSON-Objekt als Base64-codierte Binärdatei.\nc.Sie wandelt ein JSON-Objekt in einen String um und hängt einen Hashcode an.",
-    "type": "open",
-    "options": [],
+    "question": "Was macht die Methode sign der JavaScript-Bibliothek jsonwebtoken?",
+    "type": "multiple_choice",
+    "options": [
+      "Sie verschlüsselt und signiert ein JSON-Objekt.",
+      "Sie verschlüsselt ein JSON-Objekt als Base64-codierte Binärdatei.",
+      "Sie wandelt ein JSON-Objekt in einen String um und hängt einen Hashcode an."
+    ],
     "answerText": "Sie wandelt ein JSON-Objekt in einen String um und hängt einen Hashcode an.",
-    "correctIndices": []
+    "correctIndices": [
+      2
+    ]
   },
   {
     "id": 58,
-    "question": "Wofür steht das 'A' in der Abkürzung CIA im Zusammenhang mit der Sicherheit von Webanwendungen?\na.Authentication\nb.Access\nc.Availability\nd.Authorization",
-    "type": "open",
-    "options": [],
+    "question": "Wofür steht das 'A' in der Abkürzung CIA im Zusammenhang mit der Sicherheit von Webanwendungen?",
+    "type": "multiple_choice",
+    "options": [
+      "Authentication",
+      "Access",
+      "Availability",
+      "Authorization"
+    ],
     "answerText": "Availability",
-    "correctIndices": []
+    "correctIndices": [
+      2
+    ]
   },
   {
     "id": 59,
@@ -746,91 +773,183 @@
   },
   {
     "id": 60,
-    "question": "Gegeben sei folgende React-Funktionskomponente:\nexport async function Comp() {\nconst main = await loadMainData();\nreturn <p>{main.content}</p>\n}\nWas ist das (Haupt-) Problem?\na.Die Funktion darf nicht asynchron sein.\nb.Es findet keine Fehlerbehandlung statt.\nc.main könnte undefined sein.",
-    "type": "open",
-    "options": [],
+    "question": "Gegeben sei folgende React-Funktionskomponente:\nexport async function Comp() {\nconst main = await loadMainData();\nreturn <p>{main.content}</p>\n}\nWas ist das (Haupt-) Problem?",
+    "type": "multiple_choice",
+    "options": [
+      "Die Funktion darf nicht asynchron sein.",
+      "Es findet keine Fehlerbehandlung statt.",
+      "main könnte undefined sein."
+    ],
     "answerText": "Die Funktion darf nicht asynchron sein.",
-    "correctIndices": []
+    "correctIndices": [
+      0
+    ]
   },
   {
     "id": 61,
-    "question": "Mit welchem Prop registrieren Sie eine Validierungsfunktion einer Controlled-Component, wenn Sie bei jedem Tastendruck eine Validierung durchführen wollen?\na.inInput\nb.onBlur\nc.obSubmit\nd.onChange",
-    "type": "open",
-    "options": [],
+    "question": "Mit welchem Prop registrieren Sie eine Validierungsfunktion einer Controlled-Component, wenn Sie bei jedem Tastendruck eine Validierung durchführen wollen?",
+    "type": "multiple_choice",
+    "options": [
+      "inInput",
+      "onBlur",
+      "obSubmit",
+      "onChange"
+    ],
     "answerText": "onChange",
-    "correctIndices": []
+    "correctIndices": [
+      3
+    ]
   },
   {
     "id": 62,
-    "question": "Was ist die Single Origin Policy?\na.Sie ist ein Sicherheitsmechanismus des Servers, der verhindert, dass auf eine andere Origin zugreift als die, von der es geladen wurde.\nb.Sie ist ein Sicherheitsmechanismus des Browsers, der verhindert, dass auf eine andere Origin zugreift als die, von der es geladen wurde.",
-    "type": "open",
-    "options": [],
+    "question": "Was ist die Single Origin Policy?",
+    "type": "multiple_choice",
+    "options": [
+      "Sie ist ein Sicherheitsmechanismus des Servers, der verhindert, dass auf eine andere Origin zugreift als die, von der es geladen wurde.",
+      "Sie ist ein Sicherheitsmechanismus des Browsers, der verhindert, dass auf eine andere Origin zugreift als die, von der es geladen wurde."
+    ],
     "answerText": "Sie ist ein Sicherheitsmechanismus des Browsers, der verhindert, dass auf eine andere Origin zugreift als die, von der es geladen wurde.",
-    "correctIndices": []
+    "correctIndices": [
+      1
+    ]
   },
   {
     "id": 63,
-    "question": "Wie wird eine Ressource im Kontext von Rest dargestellt?\na.Eine Ressource wird als XML-Objekt dargestellt.\nb.Eine Ressource kann viele Repräsentationen haben.\nc.Eine Ressource wird als HTML-Objekt dargestellt.\nd.Eine Ressource wird als JSON-Objekt dargestellt.",
-    "type": "open",
-    "options": [],
+    "question": "Wie wird eine Ressource im Kontext von Rest dargestellt?",
+    "type": "multiple_choice",
+    "options": [
+      "Eine Ressource wird als XML-Objekt dargestellt.",
+      "Eine Ressource kann viele Repräsentationen haben.",
+      "Eine Ressource wird als HTML-Objekt dargestellt.",
+      "Eine Ressource wird als JSON-Objekt dargestellt."
+    ],
     "answerText": "Eine Ressource kann viele Repräsentationen haben.",
-    "correctIndices": []
+    "correctIndices": [
+      1
+    ]
   },
   {
     "id": 64,
-    "question": "Welches Framework in JavaScript kann man zur Umsetzung des Boundarylayers der Backend-Komponente einsetzen?\na.Spring\nb.React\nc.Mongoose\nd.Express",
-    "type": "open",
-    "options": [],
+    "question": "Welches Framework in JavaScript kann man zur Umsetzung des Boundarylayers der Backend-Komponente einsetzen?",
+    "type": "multiple_choice",
+    "options": [
+      "Spring",
+      "React",
+      "Mongoose",
+      "Express"
+    ],
     "answerText": "Express",
-    "correctIndices": []
+    "correctIndices": [
+      3
+    ]
   },
   {
     "id": 65,
-    "question": "In einer relationalen Datenbank spricht man von Tabellen (Tables). Was ist das Pendant (die Entsprechung) in MongoDB?\na.Objekte (Objects)\nb.Zeilen (Rows)\nc.Graphen (Graphs)\nd.Felder (Fields)\ne.Spalten (Columns)\nf.Sammlungen (Collections)\ng.Pfade (Paths)\nh.Tabellen (Tables)\ni.Dokumente (Documents)",
-    "type": "open",
-    "options": [],
+    "question": "In einer relationalen Datenbank spricht man von Tabellen (Tables). Was ist das Pendant (die Entsprechung) in MongoDB?",
+    "type": "multiple_choice",
+    "options": [
+      "Objekte (Objects)",
+      "Zeilen (Rows)",
+      "Graphen (Graphs)",
+      "Felder (Fields)",
+      "Spalten (Columns)",
+      "Sammlungen (Collections)",
+      "Pfade (Paths)",
+      "Tabellen (Tables)",
+      "Dokumente (Documents)"
+    ],
     "answerText": "Sammlungen (Collections)",
-    "correctIndices": []
+    "correctIndices": [
+      5
+    ]
   },
   {
     "id": 66,
-    "question": "Was bedeutet der HTTP-Response Status-Code 400?\na.Anfrage wird nicht unterstützt (Not implemented).\nb.Der Client ist nicht berechtigt, die Aktion auszuführen (Unauthorized).\nc.Die Anfrage wurde erfolgreich bearbeitet, die Antwort enthält aber keinen Inhalt (Content).\nd.Die Anfrage ist Fehlerhafgt (Bad Request).\ne.Die angefragte Resource gibt es nicht.\nf.Die Resource wurde erfolgreich angelegt.\ng.OK, Anfrage wurde erfolgreich bearbeitet.\nh.Interner Serverfehler (Internal Server Error).",
-    "type": "open",
-    "options": [],
+    "question": "Was bedeutet der HTTP-Response Status-Code 400?",
+    "type": "multiple_choice",
+    "options": [
+      "Anfrage wird nicht unterstützt (Not implemented).",
+      "Der Client ist nicht berechtigt, die Aktion auszuführen (Unauthorized).",
+      "Die Anfrage wurde erfolgreich bearbeitet, die Antwort enthält aber keinen Inhalt (Content).",
+      "Die Anfrage ist Fehlerhafgt (Bad Request).",
+      "Die angefragte Resource gibt es nicht.",
+      "Die Resource wurde erfolgreich angelegt.",
+      "OK, Anfrage wurde erfolgreich bearbeitet.",
+      "Interner Serverfehler (Internal Server Error)."
+    ],
     "answerText": "Die Anfrage ist Fehlerhafgt (Bad Request).",
-    "correctIndices": []
+    "correctIndices": [
+      3
+    ]
   },
   {
     "id": 67,
-    "question": "Was ist ein Endpoint im Kontext von REST-Servern?\na.Ein Endpoint ist eine Kombination aus URI und HTTP-Methode.\nb.Ein Endpoint ist eine Ressource.\nc.Ein Endpoint ist eine URI mit Angabe des Hosts.",
-    "type": "open",
-    "options": [],
+    "question": "Was ist ein Endpoint im Kontext von REST-Servern?",
+    "type": "multiple_choice",
+    "options": [
+      "Ein Endpoint ist eine Kombination aus URI und HTTP-Methode.",
+      "Ein Endpoint ist eine Ressource.",
+      "Ein Endpoint ist eine URI mit Angabe des Hosts."
+    ],
     "answerText": "Ein Endpoint ist eine Kombination aus URI und HTTP-Methode.",
-    "correctIndices": []
+    "correctIndices": [
+      0
+    ]
   },
   {
     "id": 68,
-    "question": "Welche der folgenden Methoden sind gültige HTTP-Request-Methoden?\na.POST\nb.PUT\nc.GET\nd.WRITE\ne.READ\nf.DELETE\ng.INSERT\nh.UPDATE",
-    "type": "open",
-    "options": [],
+    "question": "Welche der folgenden Methoden sind gültige HTTP-Request-Methoden?",
+    "type": "multiple_choice",
+    "options": [
+      "POST",
+      "PUT",
+      "GET",
+      "WRITE",
+      "READ",
+      "DELETE",
+      "INSERT",
+      "UPDATE"
+    ],
     "answerText": "POST, PUT, GET, DELETE",
-    "correctIndices": []
+    "correctIndices": [
+      0,
+      1,
+      2,
+      5
+    ]
   },
   {
     "id": 69,
-    "question": "Gegeben sei folgender Code:\nconst router = express.Router();\nrouter.get(\"/a\", myFunc)\napp.use(\"/b\", router);\nWelche URL (mit Host \"host\", Protokoll \"http\" und ohne weiter Portangabe) ruft myFunc auf?\na.http://host/a/b\nb.http://host/b\nc.http://host/a\nd.http://host/b/a",
-    "type": "open",
-    "options": [],
+    "question": "Gegeben sei folgender Code:\nconst router = express.Router();\nrouter.get(\"/a\", myFunc)\napp.use(\"/b\", router);\nWelche URL (mit Host \"host\", Protokoll \"http\" und ohne weiter Portangabe) ruft myFunc auf?",
+    "type": "multiple_choice",
+    "options": [
+      "http://host/a/b",
+      "http://host/b",
+      "http://host/a",
+      "http://host/b/a"
+    ],
     "answerText": "http://host/b/a",
-    "correctIndices": []
+    "correctIndices": [
+      1,
+      3
+    ]
   },
   {
     "id": 70,
-    "question": "In JavaScript gibt es ein bekanntes Muster, um benutzerdefinierte Funktionen nacheinander auszuführen. Wie heißt dieses Muster im JavaScript-Umfeld?\na.Express\nb.Chain of responsibility\nc.Pipeline\nd.Middleware\ne.Filters\nf.Strategy",
-    "type": "open",
-    "options": [],
+    "question": "In JavaScript gibt es ein bekanntes Muster, um benutzerdefinierte Funktionen nacheinander auszuführen. Wie heißt dieses Muster im JavaScript-Umfeld?",
+    "type": "multiple_choice",
+    "options": [
+      "Express",
+      "Chain of responsibility",
+      "Pipeline",
+      "Middleware",
+      "Filters",
+      "Strategy"
+    ],
     "answerText": "Middleware",
-    "correctIndices": []
+    "correctIndices": [
+      3
+    ]
   },
   {
     "id": 71,
@@ -854,19 +973,33 @@
   },
   {
     "id": 72,
-    "question": "Welche Möglichkeit gibt es, um einen Endpoint in Express zu definieren?\na.Man meldet eine Unterklasse von RequestHandler bei einem Router an.\nb.Man meldet eine Lambda bei einem Router an.\nc.Man meldet eine benannte Funktion an bei einem Router an.",
-    "type": "open",
-    "options": [],
+    "question": "Welche Möglichkeit gibt es, um einen Endpoint in Express zu definieren?",
+    "type": "multiple_choice",
+    "options": [
+      "Man meldet eine Unterklasse von RequestHandler bei einem Router an.",
+      "Man meldet eine Lambda bei einem Router an.",
+      "Man meldet eine benannte Funktion an bei einem Router an."
+    ],
     "answerText": "Man meldet eine Lambda bei einem Router an., Man meldet eine benannte Funktion an bei einem Router an.",
-    "correctIndices": []
+    "correctIndices": [
+      1,
+      2
+    ]
   },
   {
     "id": 73,
-    "question": "Welches Framework in JavaScript kann man zur Umsetzung des Entitätslayers der Backend-Komponente einsetzen?\na.React\nb.Mongoose\nc.Spring\nd.Express",
-    "type": "open",
-    "options": [],
+    "question": "Welches Framework in JavaScript kann man zur Umsetzung des Entitätslayers der Backend-Komponente einsetzen?",
+    "type": "multiple_choice",
+    "options": [
+      "React",
+      "Mongoose",
+      "Spring",
+      "Express"
+    ],
     "answerText": "Mongoose",
-    "correctIndices": []
+    "correctIndices": [
+      1
+    ]
   },
   {
     "id": 74,
@@ -878,133 +1011,260 @@
   },
   {
     "id": 75,
-    "question": "Was macht die Methode verify der JavaScript-Bibliothek jsonwebtoken?\na.Sie entschlüsselt und verifiziert ein JSON Objekt.\nb.Sie wandelt einen String in ein JSON-Objekt und erzeugt einen Hashcode, der mit Teiles des Eingabestrings (Signatur) übereinstimmen muss.\nc.Sie entschlüsselt eine Base64-codierte Binärdatei und erzeugt ein JSON-Objekt.",
-    "type": "open",
-    "options": [],
+    "question": "Was macht die Methode verify der JavaScript-Bibliothek jsonwebtoken?",
+    "type": "multiple_choice",
+    "options": [
+      "Sie entschlüsselt und verifiziert ein JSON Objekt.",
+      "Sie wandelt einen String in ein JSON-Objekt und erzeugt einen Hashcode, der mit Teiles des Eingabestrings (Signatur) übereinstimmen muss.",
+      "Sie entschlüsselt eine Base64-codierte Binärdatei und erzeugt ein JSON-Objekt."
+    ],
     "answerText": "Sie wandelt einen String in ein JSON-Objekt und erzeugt einen Hashcode, der mit Teiles des Eingabestrings (Signatur) übereinstimmen muss.",
-    "correctIndices": []
+    "correctIndices": [
+      1
+    ]
   },
   {
     "id": 76,
-    "question": "Was bedeutet der HTTP-Response Status-Code 401?\na.Anfrage wird nicht unterstützt (Not implemented).\nb.Der Client ist nicht berechtigt, die Aktion auszuführen (Unauthorized).\nc.Die Anfrage wurde erfolgreich bearbeitet, die Antwort enthält aber keinen Inhalt (Content).\nd.Die Anfrage ist Fehlerhafgt (Bad Request).\ne.Die angefragte Resource gibt es nicht.\nf.Die Resource wurde erfolgreich angelegt.\ng.OK, Anfrage wurde erfolgreich bearbeitet.\nh.Interner Serverfehler (Internal Server Error).",
-    "type": "open",
-    "options": [],
+    "question": "Was bedeutet der HTTP-Response Status-Code 401?",
+    "type": "multiple_choice",
+    "options": [
+      "Anfrage wird nicht unterstützt (Not implemented).",
+      "Der Client ist nicht berechtigt, die Aktion auszuführen (Unauthorized).",
+      "Die Anfrage wurde erfolgreich bearbeitet, die Antwort enthält aber keinen Inhalt (Content).",
+      "Die Anfrage ist Fehlerhafgt (Bad Request).",
+      "Die angefragte Resource gibt es nicht.",
+      "Die Resource wurde erfolgreich angelegt.",
+      "OK, Anfrage wurde erfolgreich bearbeitet.",
+      "Interner Serverfehler (Internal Server Error)."
+    ],
     "answerText": "Der Client ist nicht berechtigt, die Aktion auszuführen (Unauthorized).",
-    "correctIndices": []
+    "correctIndices": [
+      1
+    ]
   },
   {
     "id": 77,
-    "question": "Der Client schickt eine Anfrage mit folgenden Daten (etwas gekürzt, so wie Sie sie im Browser sehen können) an Ihren Express-Server:\nRequest URL: http://localhost:3000/api/somedata/7d6s8f57g958s7d667d\nRequest Method: PUT\nContent-Type: application/json\nAuthorization: Bearer edkskjdhvkN685Nils78tvkpCJ9\nBody: {id: \"7d6s8f57g958s7d667d\" , public: false, info:\"Some data\"}\nDer Server erhält die Anfrage auch, kann allerdings nicht auf das Objekt im Body zugreifen. D.h. in folgendem Code\n...\nconst data = req.body.info\n...\nwird ein Fehler geworfen: TypeError: Cannot read properties of undefined (reading 'info')\nWoran könnte das liegen?\na.Die Validierungsregeln sind falsch.\nb.Der Aufruf muss \"const data = req.info\" lauten\nc.Der Aufruf muss \"const data = req.header.body.info\" lauten\nd.Das JWT ist abgelaufen.\ne.Es wurde vergessen in der App \"app.use('*', express.json())\" einzufügen.",
-    "type": "open",
-    "options": [],
+    "question": "Der Client schickt eine Anfrage mit folgenden Daten (etwas gekürzt, so wie Sie sie im Browser sehen können) an Ihren Express-Server:\nRequest URL: http://localhost:3000/api/somedata/7d6s8f57g958s7d667d\nRequest Method: PUT\nContent-Type: application/json\nAuthorization: Bearer edkskjdhvkN685Nils78tvkpCJ9\nBody: {id: \"7d6s8f57g958s7d667d\" , public: false, info:\"Some data\"}\nDer Server erhält die Anfrage auch, kann allerdings nicht auf das Objekt im Body zugreifen. D.h. in folgendem Code\n...\nconst data = req.body.info\n...\nwird ein Fehler geworfen: TypeError: Cannot read properties of undefined (reading 'info')\nWoran könnte das liegen?",
+    "type": "multiple_choice",
+    "options": [
+      "Die Validierungsregeln sind falsch.",
+      "Der Aufruf muss \"const data = req.info\" lauten",
+      "Der Aufruf muss \"const data = req.header.body.info\" lauten",
+      "Das JWT ist abgelaufen.",
+      "Es wurde vergessen in der App \"app.use('*', express.json())\" einzufügen."
+    ],
     "answerText": "Es wurde vergessen in der App \"app.use('*', express.json())\" einzufügen.",
-    "correctIndices": []
+    "correctIndices": [
+      4
+    ]
   },
   {
     "id": 78,
-    "question": "Was ist eine Ressource im Kontext von REST?\na.Eine Ressource ist eine Entität aus dem Entitäts- bzw. Domänenklassenmodell.\nb.Eine Ressource ist ein JSON-Objekt, das von einer URI identifiziert werden kann.\nc.Eine Ressource ist eine abstrakte Identität, die von einer URI identifiziert werden kann.\nd.Eine Ressource ist ein HTML-Objekt, das von einer URI identifiziert werden kann.",
-    "type": "open",
-    "options": [],
+    "question": "Was ist eine Ressource im Kontext von REST?",
+    "type": "multiple_choice",
+    "options": [
+      "Eine Ressource ist eine Entität aus dem Entitäts- bzw. Domänenklassenmodell.",
+      "Eine Ressource ist ein JSON-Objekt, das von einer URI identifiziert werden kann.",
+      "Eine Ressource ist eine abstrakte Identität, die von einer URI identifiziert werden kann.",
+      "Eine Ressource ist ein HTML-Objekt, das von einer URI identifiziert werden kann."
+    ],
     "answerText": "Eine Ressource ist eine abstrakte Identität, die von einer URI identifiziert werden kann.",
-    "correctIndices": []
+    "correctIndices": [
+      2
+    ]
   },
   {
     "id": 79,
-    "question": "Sie erstellen mehrere Tests mit Jest, die alle das gleiche Test-Setup (also etwa Daten in der Datenbank) benötigen. Wie würden Sie des am besten umsetzen?\na.Das Setup wird in eine Funktion mit Annotation '@BeforeEach' ausgelagert. Diese wird automatisch aufgerufen.\nb.Die Tests werden zu einem Test zusammengefasst, der das Setup enthält.\nc.Das Setup wird in eine Funktion ausgelagert, die von allen Tests zu beginn aufgerufen wird.\nd.Das Setup wird in einer Funktion 'beforeEach' ausgelagert. Diese wird automatisch aufgerufen.",
-    "type": "open",
-    "options": [],
+    "question": "Sie erstellen mehrere Tests mit Jest, die alle das gleiche Test-Setup (also etwa Daten in der Datenbank) benötigen. Wie würden Sie des am besten umsetzen?",
+    "type": "multiple_choice",
+    "options": [
+      "Das Setup wird in eine Funktion mit Annotation '@BeforeEach' ausgelagert. Diese wird automatisch aufgerufen.",
+      "Die Tests werden zu einem Test zusammengefasst, der das Setup enthält.",
+      "Das Setup wird in eine Funktion ausgelagert, die von allen Tests zu beginn aufgerufen wird.",
+      "Das Setup wird in einer Funktion 'beforeEach' ausgelagert. Diese wird automatisch aufgerufen."
+    ],
     "answerText": "Das Setup wird in einer Funktion 'beforeEach' ausgelagert. Diese wird automatisch aufgerufen.",
-    "correctIndices": []
+    "correctIndices": [
+      3
+    ]
   },
   {
     "id": 80,
-    "question": "Wie heißt das Modell, in dem wir modellieren, welche Daten in unserem System aus fachlicher Sicht vorkommen?\na.Anwendungfall-Modell\nb.Komponenten-Modell\nc.Domänenklassen-Modell\nd.Aktivitäts-Modell",
-    "type": "open",
-    "options": [],
+    "question": "Wie heißt das Modell, in dem wir modellieren, welche Daten in unserem System aus fachlicher Sicht vorkommen?",
+    "type": "multiple_choice",
+    "options": [
+      "Anwendungfall-Modell",
+      "Komponenten-Modell",
+      "Domänenklassen-Modell",
+      "Aktivitäts-Modell"
+    ],
     "answerText": "Domänenklassen-Modell",
-    "correctIndices": []
+    "correctIndices": [
+      2
+    ]
   },
   {
     "id": 81,
-    "question": "SOP ist ein Sicherheitsfeature welcher Komponente?\na.Server (Express)\nb.Browser\nc.Frontend (React)\nd.Server (Node.js)",
-    "type": "open",
-    "options": [],
+    "question": "SOP ist ein Sicherheitsfeature welcher Komponente?",
+    "type": "multiple_choice",
+    "options": [
+      "Server (Express)",
+      "Browser",
+      "Frontend (React)",
+      "Server (Node.js)"
+    ],
     "answerText": "Browser",
-    "correctIndices": []
+    "correctIndices": [
+      1
+    ]
   },
   {
     "id": 82,
-    "question": "Welche Arten von React-Komponenten gibt es aus technischer Sicht?\na.Stateful Components\nb.Class Component\nc.Container Components\nd.Higher Order Components\ne.Functional Components\nf.Smart Component",
+    "question": "Welche Arten von React-Komponenten gibt es aus technischer Sicht?",
     "type": "multiple_choice",
     "options": [
+      "Stateful Components",
+      "Class Component",
+      "Container Components",
+      "Higher Order Components",
+      "Functional Components",
+      "Smart Component",
       "Presentational Components"
     ],
     "answerText": "Class Components, Functional Components",
-    "correctIndices": []
+    "correctIndices": [
+      1,
+      4
+    ]
   },
   {
     "id": 83,
-    "question": "Wozu dient die Entitäts-Komponente des Backends?\na.Sie ist im Grunde die Umsetzung der Domänenklassen und ist u.a für die Persistierung zuständig.\nb.In ihr wird das Verhalten des Systems modelliert.\nc.Sie ist dür die Kommunikation zwischen einem System und der Außenwelt zuständig.\nd.Sie modelliert die Akteure (Entitäten) der Anwendung.",
-    "type": "open",
-    "options": [],
+    "question": "Wozu dient die Entitäts-Komponente des Backends?",
+    "type": "multiple_choice",
+    "options": [
+      "Sie ist im Grunde die Umsetzung der Domänenklassen und ist u.a für die Persistierung zuständig.",
+      "In ihr wird das Verhalten des Systems modelliert.",
+      "Sie ist dür die Kommunikation zwischen einem System und der Außenwelt zuständig.",
+      "Sie modelliert die Akteure (Entitäten) der Anwendung."
+    ],
     "answerText": "Sie ist im Grunde die Umsetzung der Domänenklassen und ist u.a für die Persistierung zuständig.",
-    "correctIndices": []
+    "correctIndices": [
+      0
+    ]
   },
   {
     "id": 84,
-    "question": "Welche Alternativen gibt es zu REST APIs?\na.Query-Based APIs (bsopw. mit GraphQL)\nb.Service-Orientierte APIs (SOAP\nc.Event-Orientierte APIs (bspw. mit Kafka)\nd.Remote-Procedure-Calls basierte APIs",
-    "type": "open",
-    "options": [],
+    "question": "Welche Alternativen gibt es zu REST APIs?",
+    "type": "multiple_choice",
+    "options": [
+      "Query-Based APIs (bsopw. mit GraphQL)",
+      "Service-Orientierte APIs (SOAP",
+      "Event-Orientierte APIs (bspw. mit Kafka)",
+      "Remote-Procedure-Calls basierte APIs"
+    ],
     "answerText": "Query-Based APIs (bsopw. mit GraphQL), Remote-Procedure-Calls basierte APIs",
-    "correctIndices": []
+    "correctIndices": [
+      0,
+      3
+    ]
   },
   {
     "id": 85,
-    "question": "Was bedeutet der HTTP-Response Status-Code 200?\na.Die Anfrage wurde erfolgreich bearbeitet, die Antwort enthält aber keinen Inhalt (Content).\nb.Interner Serverfehler (Internal Server Error).\nc.Die angefragte Resource gibt es nicht.\nd.Die Resource wurde erfolgreich angelegt.\ne.Anfrage wird nicht unterstützt (Not Implemented).\nf.OK, Anfrage wurde erfolgreich bearbeitet.\ng.Der Client ist nicht berechtigt, die Aktion auszuführen (Unauthorized).\nh.Die Anfrage ist fehlerhaft (Bad Request).",
-    "type": "open",
-    "options": [],
+    "question": "Was bedeutet der HTTP-Response Status-Code 200?",
+    "type": "multiple_choice",
+    "options": [
+      "Die Anfrage wurde erfolgreich bearbeitet, die Antwort enthält aber keinen Inhalt (Content).",
+      "Interner Serverfehler (Internal Server Error).",
+      "Die angefragte Resource gibt es nicht.",
+      "Die Resource wurde erfolgreich angelegt.",
+      "Anfrage wird nicht unterstützt (Not Implemented).",
+      "OK, Anfrage wurde erfolgreich bearbeitet.",
+      "Der Client ist nicht berechtigt, die Aktion auszuführen (Unauthorized).",
+      "Die Anfrage ist fehlerhaft (Bad Request)."
+    ],
     "answerText": "OK, Anfrage wurde erfolgreich bearbeitet.",
-    "correctIndices": []
+    "correctIndices": [
+      5
+    ]
   },
   {
     "id": 86,
-    "question": "Welche Angriffsarten adressiert die Sanitisierung von Daten?\na.SQL-Injection\nb.Cross-Site-Scripting\nc.(Distributed) Denial of Service",
-    "type": "open",
-    "options": [],
+    "question": "Welche Angriffsarten adressiert die Sanitisierung von Daten?",
+    "type": "multiple_choice",
+    "options": [
+      "SQL-Injection",
+      "Cross-Site-Scripting",
+      "(Distributed) Denial of Service"
+    ],
     "answerText": "Cross-Site-Scripting",
-    "correctIndices": []
+    "correctIndices": [
+      1
+    ]
   },
   {
     "id": 87,
-    "question": "Was ist die wichtigste Ergänzung von Mongoose bezüglich MongoDB?\na.Bei Mongoose können wir Daten hierarchisch definieren.\nb.Bei Mongoose können wir Indizes definieren.\nc.Bei Mongoose können wir Fremdschlüssel definieren.\nd.Bei Mongoose können wir ein Schema definieren.",
-    "type": "open",
-    "options": [],
+    "question": "Was ist die wichtigste Ergänzung von Mongoose bezüglich MongoDB?",
+    "type": "multiple_choice",
+    "options": [
+      "Bei Mongoose können wir Daten hierarchisch definieren.",
+      "Bei Mongoose können wir Indizes definieren.",
+      "Bei Mongoose können wir Fremdschlüssel definieren.",
+      "Bei Mongoose können wir ein Schema definieren."
+    ],
     "answerText": "Bei Mongoose können wir ein Schema definieren.",
-    "correctIndices": []
+    "correctIndices": [
+      3
+    ]
   },
   {
     "id": 88,
-    "question": "Das Frontend schickt Daten im Request-Body an das mit Express geschrieben Backend.\nObwohl die Daten richtig verschickt werden, können Sie nicht über 'request.body? darauf zugreifen. Woran könnte das liegen?\na.Sie haben Middleware express.json() nicht eingebunden.\nb.Sie haben Middleware express.raw() nicht eingebunden.\nc.Sie haben Middleware express.text() nicht eingebunden.\nd.Sie haben Middleware express.surlencoded() nicht eingebunden.",
-    "type": "open",
-    "options": [],
+    "question": "Das Frontend schickt Daten im Request-Body an das mit Express geschrieben Backend.\nObwohl die Daten richtig verschickt werden, können Sie nicht über 'request.body? darauf zugreifen. Woran könnte das liegen?",
+    "type": "multiple_choice",
+    "options": [
+      "Sie haben Middleware express.json() nicht eingebunden.",
+      "Sie haben Middleware express.raw() nicht eingebunden.",
+      "Sie haben Middleware express.text() nicht eingebunden.",
+      "Sie haben Middleware express.surlencoded() nicht eingebunden."
+    ],
     "answerText": "Sie haben Middleware express.json() nicht eingebunden., Sie haben Middleware express.surlencoded() nicht eingebunden.",
-    "correctIndices": []
+    "correctIndices": [
+      0,
+      3
+    ]
   },
   {
     "id": 89,
-    "question": "Wozu dient die Kontroll-Komponente des Backends?\na.Sie ist für die Kommunikation zwischen einem System und der Außenwelt zuständig.\nb.Sie validiert (kontrollieren) die Daten, die eingegeben werden.\nc.In ihr wird das Verhalten des Systems modelliert.\nd.Sie modelliert die Akteure (Kontrolleure) der Anwendung.",
-    "type": "open",
-    "options": [],
+    "question": "Wozu dient die Kontroll-Komponente des Backends?",
+    "type": "multiple_choice",
+    "options": [
+      "Sie ist für die Kommunikation zwischen einem System und der Außenwelt zuständig.",
+      "Sie validiert (kontrollieren) die Daten, die eingegeben werden.",
+      "In ihr wird das Verhalten des Systems modelliert.",
+      "Sie modelliert die Akteure (Kontrolleure) der Anwendung."
+    ],
     "answerText": "In ihr wird das Verhalten des Systems modelliert.",
-    "correctIndices": []
+    "correctIndices": [
+      2
+    ]
   },
   {
     "id": 90,
-    "question": "Was bedeutet der HTTP-Response Status-Code 200?\na.Die Anfrage wurde erfolgreich bearbeitet, die Antwort enthält aber keinen Inhalt (Content).\nb.Interner Serverfehler (Internal Server Error).\nc.Die angefragte Resource gibt es nicht.\nd.Die Resource wurde erfolgreich angelegt.\ne.Anfrage wird nicht unterstützt (Not Implemented).\nf.OK, Anfrage wurde erfolgreich bearbeitet.\ng.Der Client ist nicht berechtigt, die Aktion auszuführen (Unauthorized).\nh.Die Anfrage ist fehlerhaft (Bad Request).",
-    "type": "open",
-    "options": [],
+    "question": "Was bedeutet der HTTP-Response Status-Code 200?",
+    "type": "multiple_choice",
+    "options": [
+      "Die Anfrage wurde erfolgreich bearbeitet, die Antwort enthält aber keinen Inhalt (Content).",
+      "Interner Serverfehler (Internal Server Error).",
+      "Die angefragte Resource gibt es nicht.",
+      "Die Resource wurde erfolgreich angelegt.",
+      "Anfrage wird nicht unterstützt (Not Implemented).",
+      "OK, Anfrage wurde erfolgreich bearbeitet.",
+      "Der Client ist nicht berechtigt, die Aktion auszuführen (Unauthorized).",
+      "Die Anfrage ist fehlerhaft (Bad Request)."
+    ],
     "answerText": "Die Anfrage wurde erfolgreich bearbeitet, die Antwort enthält aber keinen Inhalt (Content).",
-    "correctIndices": []
+    "correctIndices": [
+      0
+    ]
   },
   {
     "id": 91,
