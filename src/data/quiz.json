@@ -1,0 +1,1137 @@
+[
+  {
+    "id": 1,
+    "question": "In Ihrem Frontend, dass Sie von\nhttp://some-host.de geladen haben, möchten Sie in JavaScript mit fetch Daten an\nhttp://some-other-host.de\nsenden und verwenden dabei die HTTP-Methode POST.\nSie haben CORS nicht konfiguriert. Was beobachten Sie?",
+    "type": "multiple_choice",
+    "options": [
+      "Der Browser blockiert den Request, d.h. der Server bekommt keine Anfrage.",
+      "Der Browser schickt zunächst einen OPTIONS-Request an den Server und erzeugt nach Erhalt der Antwort eine Fehlermeldung",
+      "Der Browser schickt einen POST-Request an den Server.",
+      "Der Server verweigert die POST-Anfrage, d.h. der Browser bekommt nur einen Fehlercode.",
+      "Der Server bearbeitet ganz normal die POST-Anfrage und schickt eine Antwort.",
+      "Der Browser bekommt die Antwort, leitet diese aber nicht an das Frontend weiter sondern erzeugt eine Fehlermeldung.",
+      "Der Browser bekommt die Antwort und leitet diese ganz normal an das Frontend weiter, da es sich um einen einfachen Request mit POST handelt."
+    ],
+    "answerText": "Der Browser schickt zunächst einen OPTIONS-Request an den Server und erzeugt nach Erhalt der Antwort eine Fehlermeldung.",
+    "correctIndices": [
+      1
+    ]
+  },
+  {
+    "id": 2,
+    "question": "Was ist an folgender **Middleware** problematisch?\n1. export async function requiresAuthentication(req, res, next) {\n2. try {\n3. const jwtString = req.cookies?.access_token;\n4. req.userId = verifyJWT(jwtString)\n5. } catch (err) {\n6. res.status(401);\n7. next(err);\n8. }\n9. }\nGeben Sie eine kurze Erklärung, also was passiert bei Ausführung und warum, sowie wie das Problem gelöst werden kann. Die Nummern\ngeben die Zeilennummern an, auf diese können Sie sich in Ihrer Antwort beziehen.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. Es fehlt der Aufruf der nächsten Middleware, falls die Authentifizierung erfolgreich war. 2. In diesem Fall wird keine Antwort verschickt und der Client wartet ewig. 3. Lösung: Nach Zeile 4 (vor 5) oder am Ende nach 7. muss next() aufgerufen werden. Der Catch-Block ist korrekt, res.status sendet die Response noch nicht, das macht dann der allgemeine Fehlerhandler, der durch next(err) aufgerufen wird (und das den Status-Code in der Response übernimmt).",
+    "correctIndices": []
+  },
+  {
+    "id": 3,
+    "question": "Was ist CORS, also wer setzt es wozu ein?\nGeben Sie ein bis drei Sätze an, verwenden Sie die entsprechenden Fachbegriffe. Sie müssen das Akronym nicht ausschreiben.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. Mit CORS kann ein Server dem Browser erlauben, Ausnahmen von der SOP-Policy zu machen. 2. D.h. ein Skript darf auch dann auf den Server zugreifen, wenn es von einem anderen Server geladen wurde (was eigentlich gegen SOP verstößt).",
+    "correctIndices": []
+  },
+  {
+    "id": 4,
+    "question": "Wie heißt die Architektur (bzw. das Architekturmuster), die in WE2 für das Backend verwendet wurde?",
+    "type": "open",
+    "options": [],
+    "answerText": "Schichtenarchitektur",
+    "correctIndices": []
+  },
+  {
+    "id": 5,
+    "question": "Was bedeutet das Acronym SOP?\nSchreiben Sie die Abkürzung (ohne Bindestriche, einfach mit Leerzeichen getrennt) aus, also z.B. \"Sicherlich Ordentlich Programmiert\".",
+    "type": "open",
+    "options": [],
+    "answerText": "Same Origin Policy",
+    "correctIndices": []
+  },
+  {
+    "id": 6,
+    "question": "Erklären Sie den Begriff Salt im Zusammenhang mit Hashing.\nWas ist das, wo kommt es her, wie wird es verwendet? Halten Sie Ihre Antwort kurz. Erklären Sie nicht, warum es eingesetzt wird.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. Salt ist ein zufälliger Wert. 2. Dieser wird bei jedem Hashen neu generiert wird. 3. Er wird zusammen mit dem Passwort gehasht. 4. Das Salt wird in der Datenbank gespeichert (mit dem Hash). 5. Beim Prüfen des Passworts wird das Salt wieder verwendet, um den Hashwert zu berechnen und mit dem gespeicherten Hashwert zu vergleichen.",
+    "correctIndices": []
+  },
+  {
+    "id": 7,
+    "question": "Nennen Sie drei wichtigste Constraints (Beschränkungen), die REST vorgibt.\nGeben Sie eine kurze Antwort an, Stichpunkte genügen. Sie müssen hier nicht auf Details oder Techniken eingehen.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. Die Kommunikation erfolgt zwischen zwei Komponenten, Client und Server. 2. Die Kommunikation (Request) muss selbstbeschreibend sein, also ohne vorangegangene Requests verstanden werden. 3. Daten in der Response müssen als \"cacheable\" bzw. \"non-cacheable” gekennzeichnet werden können. 4. Komponenten können in Layern organisiert werden. 5. Die Schnittstelle zwischen den Komponenten muss einheitlich (uniform) gestaltet sein.",
+    "correctIndices": []
+  },
+  {
+    "id": 8,
+    "question": "Was versteht man in React unter einer Controlled Component?",
+    "type": "multiple_choice",
+    "options": [
+      "Eine Controlled Component ist ein Input-Element (o.ä.), dessen Wert über eine State-Variable der React-Komponente (die das Element rendert) gesteuert (controlled) wird.",
+      "Eine Controlled Component ist ein Input-Element (o.ä.), dessen Wert vom Input-Element selbst gesteuert (controlled) wird und in der React-Komponente (die das Element rendert) nur (mittels einer Referenz) abgefragt wird.",
+      "Eine Controlled Component ist eine React-Komponente, die ihr Neu-Rendern nicht selbst steuert, also die Kontrolle React übergibt und daher aus Sicht von React 'controlled' ist.",
+      "Eine Controlled Component ist eine React-Komponente, die ihr Neu-Rendern selbst steuert, also die Kontrolle nicht React übergibt und daher selbst 'controlled' ist"
+    ],
+    "answerText": "Eine Controlled Component ist ein Input-Element (o.ä.), dessen Wert über eine State-Variable der ReactKomponente (die das Element rendert) gesteuert (controlled) wird.",
+    "correctIndices": []
+  },
+  {
+    "id": 9,
+    "question": "Was bedeutet es, wenn eine HTTP-Methode idempotent ist? Nennen Sie zwei HTTP-Methoden, die idempotent sind.\nEine kurze Erklärung des Begriffs (Stichworte) sowie Methodennamen (ohne weitere Erklärung) genügen.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. Eine Anfrage mit einer idempotent Methode ändert den Server-Zustand bei mehrmaligen Aufrufen nach dem ersten Aufruf nicht mehr (auch wenn evtl. die Antworten verschieden sind). 2. Beispiele dafür sind GET, HEAD, PUT oder DELETE",
+    "correctIndices": []
+  },
+  {
+    "id": 10,
+    "question": "Gegeben sei folgender Code:\nexport function Foo({a, b}: {a: number, b: string}) {\n// ...\nreturn <p></p>\n}\nWelche der folgenden Aussagen ist richtig?",
+    "type": "multiple_choice",
+    "options": [
+      "Man kann die Funktion in JSX über <Foo a=\"42\" b=\"Hallo\" /> einbinden.",
+      "Man kann die Funktion gar nicht in JSX einbinden.",
+      "Man kann die Funktion in JSX über <Foo /> einbinden.",
+      "Man kann die Funktion in JSX über <Foo a=42 b=\"Hallo\" /> einbinden.",
+      "Man kann die Funktion in JSX über <Foo a={42} b=\"Hallo\" /> einbinden.",
+      "Man kann die Funktion in JSX über <Foo a={42} b={\"Hallo\"} /> einbinden."
+    ],
+    "answerText": "Man kann die Funktion in JSX über <Foo a={42} b=\"Hallo\" /> einbinden., Man kann die Funktion in JSX über <Foo a={42} b={\"Hallo\"} /> einbinden.",
+    "correctIndices": [
+      4,
+      5
+    ]
+  },
+  {
+    "id": 11,
+    "question": "Mit welcher API kann im Browser mit JavaScript asynchron mit einem Server kommuniziert werden?\nGeben Sie nur den Namen der API an, ohne \"-API\" oder ähnliches. Wenn Sie mehrere kennen, nennen Sie die vermutlich gebräuchlichere.",
+    "type": "open",
+    "options": [],
+    "answerText": "Fetch",
+    "correctIndices": []
+  },
+  {
+    "id": 12,
+    "question": "Welche Elemente (Knoten, Kanten) erwarten Sie in einem Anwendungsfalldiagramm? Nennen Sie (nur) die wichtigen Elemente, die auf jeden Fall zu sehen sind!\nFühren Sie einfach nur kurz die Elemente (Namen) auf, ohne weitere Erklärungen.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. Akteure 2. Anwendungsfälle 3. Beziehungen (Assoziationen) zwischen Akteuren und Anwendungsfällen 4. Include- und Extends-Beziehungen zwischen Anwendungsfällen oder Generalisierung zwischen Akteuren sind möglich, aber nur sparsam einzusetzen. Die Systemgrenze kann eingezeichnet werden, ist aber optional.",
+    "correctIndices": []
+  },
+  {
+    "id": 13,
+    "question": "Wofür steht das 'I' in der Abkürzung CIA im Zusammenhang mit der Sicherheit von Webanwendungen?\nGeben Sie den Fachbegriff an und erläutern Sie diesen kurz.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. Integrity (Integrität): 2. Nur Entitäten (Personen oder andere Systeme), die berechtigt sind, dürfen (geschützte) Daten schreiben.",
+    "correctIndices": []
+  },
+  {
+    "id": 14,
+    "question": "Wie kann man das Problem von SOP architekturseitig quasi umgehen?",
+    "type": "multiple_choice",
+    "options": [
+      "Wir konfigurieren das Backend so, dass es Anfragen von allen anderen Domains akzeptiert.",
+      "Der Frontend-Server, der den Frontend-Code (HTML etc.) ausliefert, und das Backend müssen auf der gleichen Maschine (also mit gleicher IP-Adresse) laufen.",
+      "Es wird ein (API-) Gateway eingesetzt, dass alle Anfragen entgegennimmt weiterverteilt.",
+      "Der Frontend-Server, der den Frontend-Code (HTML etc.) ausliefert, wird als Proxy eingesetzt und leitet bestimmte Anfragen an das eigentliche Backend weiter.",
+      "Wir setzen eine Microservice-Architektur ein, bei dieser tritt das Problem nicht auf."
+    ],
+    "answerText": "Es wird ein (API-) Gateway eingesetzt, dass alle Anfragen entgegennimmt weiterverteilt., Der Frontend-Server, der den Frontend-Code (HTML etc.) ausliefert, wird als Proxy eingesetzt und leitet bestimmte Anfragen an das eigentliche Backend weiter.",
+    "correctIndices": [
+      2,
+      3
+    ]
+  },
+  {
+    "id": 15,
+    "question": "Was ist der Unterschied zwischen den HTTP-Methoden POST, PUT und PATCH?\nErklären Sie einfach kurz die jeweilige Methode in Hinblick auf die anderen Methoden. Halten Sie Ihre Antwort kurz, Stichworte genügen.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. POST wird verwendet, um eine Resource anzulegen. 2. PUT wird verwendet, um eine Ressource vollständig zu ersetzen. 3. PATCH wird verwendet, um eine Ressource teilweise zu aktualisieren (es werden also ggf. nur Änderungen übertragen). Abzug, wenn kein Unterschied v.a. zwischen PUT und PATCH in der Antwort erkennbar.",
+    "correctIndices": []
+  },
+  {
+    "id": 16,
+    "question": "Was beschreibt ein Socket in einem Komponentendiagramm?\nEs geht hier im wesentlichen um die Syntax des UML-Diagramms. D.h. Sie sollen nicht eine ausführliche Beschreibung angeben, sondern\nganz kurz erklären, was das Symbol bedeutet. Gibt es eine alternative Darstellung?",
+    "type": "open",
+    "options": [],
+    "answerText": "Ein von einer Komponente 1. benötigtes (required) 2. Interface. 3. Alternativ kann man ein Interface zeichnen, das von der Komponente verwendet (Dependency) wird.",
+    "correctIndices": []
+  },
+  {
+    "id": 17,
+    "question": "Sie möchten in einem JSX-Element <ul> die (String-) Elemente eines Arrays (Variable list) als eine <li>-Elemente darstellen.\nGeben Sie den Code an.",
+    "type": "open",
+    "options": [],
+    "answerText": "<ul>{list.map(e=> <li>e</li>)}</ul>",
+    "correctIndices": []
+  },
+  {
+    "id": 18,
+    "question": "Welche Frameworks in JavaScript setzen das Middleware-Pattern ein? Geben Sie auch kurz an, wofür die Middlewares eingesetzt\nwerden.\nGeben Sie einfach den Namen der Frameworks und jeweiligen Anwendungszweck bzw. Art der Verwendung (der Middlewares) an; also\nbeispielsweise \"Kitchen-Framework, dort Middleware für Pizza-Zubereitung\"",
+    "type": "open",
+    "options": [],
+    "answerText": "1. Express, dort werden Middleware-Funktionen zum Bearbeiten der Anfrage (Authentifizierung, Validierung); 2. Mongoose, dort im Rahmen von pre- und post-Hooks (Passwort-Hashing). Die Hooks bei React sind keine Middleware-Funktionen.",
+    "correctIndices": []
+  },
+  {
+    "id": 19,
+    "question": "Wie können Sie am einfachsten Informationen zwischen einer React-Funktionskomponente und allen ihren Descendant (Nachfolgern)\n(die ebenfalls Funktionskomponente sind) ausgetauscht werden?\nGeben Sie als Antwort nur ein Stichwort an, bspw. \"mittels Telefon\"",
+    "type": "open",
+    "options": [],
+    "answerText": "useContext: 1. Parent stell Context bereit 2. Child kann darauf über den useContext-Hook zugreifen. 3. Context kann Daten bereitstellen oder (über Funktionen) entgegennehmen.",
+    "correctIndices": []
+  },
+  {
+    "id": 20,
+    "question": "Welche Informationen benötigt man, um einen HTTPS-Server (mit Node.js) starten zu können?",
+    "type": "multiple_choice",
+    "options": [
+      "den Port",
+      "die Subdomain für die Anwendung",
+      "die IP-Adresse",
+      "die Host-Adresse",
+      "die Domain",
+      "die URL des Backends",
+      "das Zertifikat",
+      "den privaten Schlüssel"
+    ],
+    "answerText": "den privaten Schlüssel, das Zertifikat, den Port",
+    "correctIndices": [
+      0,
+      6,
+      7
+    ]
+  },
+  {
+    "id": 21,
+    "question": "Was ist die Kernfunktionalität von Express?",
+    "type": "multiple_choice",
+    "options": [
+      "Express bildet Endpoints auf JavaScript-Funktionen ab.",
+      "Express bildet Ressourcen auf JSON ab.",
+      "Express bildet Requests und Responses auf JavaScript-Objekte ab."
+    ],
+    "answerText": "Express bildet Endpoints auf JavaScript-Funktionen ab.",
+    "correctIndices": [
+      0
+    ]
+  },
+  {
+    "id": 22,
+    "question": "Welchen Hook verwenden Sie in React, wenn Sie innerhalb einer Komponente veränderbare Daten darstellen wollen?\nGeben Sie nur den Namen des Hooks bzw. der Funktion an, ohne die Klammern. Also verwendeHook und nicht verwendeHook().",
+    "type": "open",
+    "options": [],
+    "answerText": "useState",
+    "correctIndices": []
+  },
+  {
+    "id": 23,
+    "question": "Was für eine Art von Datenbank ist MongoDB?\nGeben Sie ein Adjektiv an, bspw. Mongo-DB ist \"super-toll\".",
+    "type": "open",
+    "options": [],
+    "answerText": "dokumenten-orientiert",
+    "correctIndices": []
+  },
+  {
+    "id": 24,
+    "question": "Was ist der OPTIONS-Request in Zusammenhang mit CORS? Wie nennt man den OPTIONS-Request in diesem Zusammenhang auch?\nGeben Sie ein bis drei Sätze an, wer den OPTIONS-Request macht, warum und wie er heißt. Sie müssen das Akronym CORS weder\nausschreiben nicht erklären.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. Dies ist der Preflight Request: 2. Die Fetch-API bzw. Browser schickt bei bestimmten Requests automatisch einen OPTIONS-Request. 3. Damit wird herauszufinden, ob der eigentliche Request durchgeführt werden darf.",
+    "correctIndices": []
+  },
+  {
+    "id": 25,
+    "question": "Was ist Authentication, was ist Authorization?\nErklären Sie beide Begriffe kurz, Stichworte genügen.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. Authentication: Verifizierung der behaupteten Identität einer Entität 2. Authorization: Einräumung bzw. Prüfung von Rechten, inklusive der Gewährung von Zugriff aufgrund von Zugriffsrechten (für eine Entität), setzt Authentication voraus.",
+    "correctIndices": []
+  },
+  {
+    "id": 26,
+    "question": "Was versteht man unter Typosquatting und was hat das mit NPM-Projekten zu tun?\nEine kurze Antwort, ggf. Stichworte, genügen.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. Hacker registrieren Pakete mit Namen, die bekannten Paketen ähneln. 2. Die Namen sind Tippfehler der richtigen Namen darstellen. 3. Die Pakete der Hacker enthalten Schadcode.",
+    "correctIndices": []
+  },
+  {
+    "id": 27,
+    "question": "Nennen Sie drei verschiedene Status-Code, die ein nicht-erfolgreiche HTTP-Response aufgrund eines falschen Requests haben kann.\nGeben Sie jeweils den Code sowie eine ganz kurze Beschreibung (ein Stichwort genügt) an.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. 400, Bad Request (allgemein falsche Anfrage) 2. 401, Unauthorized (nicht authentifiziert) 3. 403, Forbidden (nicht autorisiert) 4. 404, Not Found (Resource nicht gefunden)",
+    "correctIndices": []
+  },
+  {
+    "id": 28,
+    "question": "import \"./style.css\";\nWas bewirkt dieser Code?",
+    "type": "multiple_choice",
+    "options": [
+      "Die Datei wird nicht wirklich importiert, sondern nur von Webpack verarbeitet.",
+      "Die Datei wird importiert, d.h. der TypeScript-Compiler prüft, ob die CSS-Datei korrekt ist.",
+      "Die Datei wird importiert, so dass wir in TypeScript direkt auf die darin befindelichen RuleSets zugreifen können."
+    ],
+    "answerText": "Die Datei wird nicht wirklich importiert, sondern nur von Webpack verarbeitet.",
+    "correctIndices": [
+      0
+    ]
+  },
+  {
+    "id": 29,
+    "question": "Sie haben im Frontend ein Formular umgesetzt:\n<form action=\"login\" method=\"post\">\n<label for=\"userid\">EMail:</label>\n<input type=\"text\" name=\"email\" id=email\"><br />\n<label for=\"password\">Passwort:</label>\n<input type=\"password\" name=\"password\" id=“password\"><br />\n<input type=\"submit\" value=\"Login via POST\">\n</form>\nWelche Aussagen sind korrekt?",
+    "type": "multiple_choice",
+    "options": [
+      "Damit man darauf sinnvoll zugreifen können, muss die Middleware cookie-parser installiert ist.",
+      "Damit man darauf sinnvoll zugreifen können, muss die Middleware urlencoded installiert ist.",
+      "Die Daten befinden sich im Request-Body.",
+      "Die Daten befinden sich in der Request-Query.",
+      "Die Daten befinden sich im Request-Parameter."
+    ],
+    "answerText": "Die Daten befinden sich im Request-Body., Damit man darauf sinnvoll zugreifen können, muss die Middleware urlencoded installiert ist.",
+    "correctIndices": [
+      1,
+      2
+    ]
+  },
+  {
+    "id": 30,
+    "question": "Gegeben sei folgender Code:\nimport {Schema, model, Types} from \"mongoose\"\nconst TeamSchema = new Schema({\nname: String,\ncaptain: { type: Schema.Types.ObjectId, ref: 'Player' }\n});\nexport const Team('Team', teamSchema);\nWelche Aussagen sind korrekt?",
+    "type": "multiple_choice",
+    "options": [
+      "Wenn man ein neues Team mit new Team({name: \"Hallo\", captain: Ahab}) anlegt, prüft Mongoose automatisch, ob Ahab ein Eintrag in der Collection Player ist.",
+      "Man kann ein neues Teams mit Team.create({ name: \"Hallo\"}) anlegen.",
+      "Beim Anlegen eines neuen Teams muss ein Wert für captain angegeben werden.",
+      "Man kann ein neues Teams mit TeamSchema.create({ name: \"Hallo\"}) anlegen."
+    ],
+    "answerText": "Man kann ein neues Teams mit Team.create({ name: \"Hallo\"}) anlegen.",
+    "correctIndices": [
+      1
+    ]
+  },
+  {
+    "id": 31,
+    "question": "Sie erstellen mehrere Tests mit Jest, die alle eine Datenbank-Verbindung benötigen. Wie setzen Sie das am besten um?",
+    "type": "multiple_choice",
+    "options": [
+      "Sie starten die Datenbank in einem Script in der package.json.",
+      "Sie erstellen eine Datei jest.config.js und definieren dort die Datenbank-Verbindung.",
+      "Sie starten die Datenbank manuell vor dem Test.",
+      "Sie erstellen eine Datei jest.config.js und definieren dort, welches Script vor allen Tests ausgeführt werden soll und in dem die Datenbank-Verbindung aufgebaut wird."
+    ],
+    "answerText": "Sie erstellen eine Datei jest.config.js und definieren dort, welches Script vor allen Tests ausgeführt werden soll und in dem die Datenbank-Verbindung aufgebaut wird.",
+    "correctIndices": [
+      3
+    ]
+  },
+  {
+    "id": 32,
+    "question": "Was ist daran problemtisch, wenn man Datenbankabfragen (egal ob NOSQL oder SQL) einfach mit String-Konkatenation zusammenbaut, also etwa so:\nconst query = `select * from students where name=${name}`;",
+    "type": "multiple_choice",
+    "options": [
+      "Es ist anfällig für (NO)SQL-Injection.",
+      "Es ist anfällig für Cross-Site-Request-Forgery.",
+      "Es ist anfällig für Denial-of-Service-Attacken.",
+      "Es ist anfällig für Cross-Origin-Resource-Sharing.",
+      "Es ist anfällig für Cross-Site-Scripting (XSS)."
+    ],
+    "answerText": "Es ist anfällig für (NO)SQL-Injection.",
+    "correctIndices": [
+      0
+    ]
+  },
+  {
+    "id": 33,
+    "question": "Was bedeutet das Schutzziel Integrity?",
+    "type": "multiple_choice",
+    "options": [
+      "Nur Personen (oder andere Systeme), die berechtigt sind, dürfen Daten lesen.",
+      "Nur Personen (oder andere Systeme), die berechtigt sind, dürfen Daten schreiben.",
+      "Personen (oder andere Systeme), die berechtigt sind, können Daten lesen oder schreiben."
+    ],
+    "answerText": "Nur Personen (oder andere Systeme), die berechtigt sind, dürfen Daten schreiben.",
+    "correctIndices": [
+      1
+    ]
+  },
+  {
+    "id": 34,
+    "question": "Was ist ein HTTP-Statuscode?",
+    "type": "multiple_choice",
+    "options": [
+      "Ein HTTP-Statuscode ist eine Zahl, die den Status einer HTTP-Anfrage beschreibt und zusätzlich eine kurze Beschreibung mit der Bedeutung des Status enthält.",
+      "Ein HTTP-Statuscode ist eine Zahl, die den Status einer HTTP-Anfrage beschreibt und deren Bedeutung in der HTTP-Spezifikation beschrieben ist.",
+      "Ein HTTP-Statuscode ist eine Zahl, die den Status einer HTTP-Anfrage beschreibt. Die Bedeutung der Zahl muss in der APIDokumentation beschrieben werden."
+    ],
+    "answerText": "Ein HTTP-Statuscode ist eine Zahl, die den Status einer HTTP-Anfrage beschreibt und deren Bedeutung in der HTTP-Spezifikation beschrieben ist.",
+    "correctIndices": [
+      1
+    ]
+  },
+  {
+    "id": 35,
+    "question": "Welche Eigenschaft ist für eine Hashing-Funktion für kryptographische Anwendungen beim Signieren von Public-Keys im Allgemeinen relevant?",
+    "type": "multiple_choice",
+    "options": [
+      "Sie darf nicht viel Speicher verbrauchen.",
+      "Sie muss besonders schnell sein.",
+      "Sie muss kollisionsfrei sein.",
+      "Sie muss kollisionsresistent sein."
+    ],
+    "answerText": "Sie muss kollisionsresistent sein.",
+    "correctIndices": [
+      3
+    ]
+  },
+  {
+    "id": 36,
+    "question": "Sie sollen Formulardaten mittels HTML und CSS validieren. Was müssen Sie in React beachten?",
+    "type": "multiple_choice",
+    "options": [
+      "Sie müssen eine Uncontrolled-Component und den useRef-Hook verwenden.",
+      "Sie müssen eine Controlled-Component und den useRef-Hook verwenden.",
+      "Sie müssen eine Uncontrolled-Component und den useControl-Hook verwenden.",
+      "Sie müssen eine Controlled-Component und den useControl-Hook verwenden."
+    ],
+    "answerText": "Sie müssen eine Uncontrolled-Component und den useRef-Hook verwenden.",
+    "correctIndices": [
+      0
+    ]
+  },
+  {
+    "id": 37,
+    "question": "Wie kann man das Problem von SOP und CORS architektorseitig sinnvoll lösen?",
+    "type": "multiple_choice",
+    "options": [
+      "Es wird ein Gateway eingesetzt, dass alle Anfragen entgegennimmt weiterverteilt.",
+      "Der Frontend-Server, der den Frontend-Code (HTML etc.) ausliefert, und das Backend müssen auf der gleichen Maschine (also mit gleicher IP-Adresse) laufen.",
+      "Der Frontend-Server, der den Frontend-Code (HTML etc.) ausliefert, wird als Proxy eingesetzt und leitet bestimmte Anfragen an das eigentliche Backend weiter.",
+      "Wir setzen eine Microservice-Architektur ein, bei dieser tritt das Problem nicht auf.",
+      "Wir konfigurieren das Backend so, dass es Anfragen von allen anderen Domains akzeptiert."
+    ],
+    "answerText": "Es wird ein Gateway eingesetzt, dass alle Anfragen entgegennimmt weiterverteilt., Der Frontend-Server, der den Frontend-Code (HTML etc.) ausliefert, wird als Proxy eingesetzt und leitet bestimmte Anfragen an das eigentliche Backend weiter.",
+    "correctIndices": [
+      0,
+      2
+    ]
+  },
+  {
+    "id": 38,
+    "question": "In Ihrem Frontend, dass Sie von http://some-host.de geladen haben, möchten Sie in JavaScript mit fetch Daten von http://some-otherhost.de laden und verwenden dabei die HTTP-Methode GET.\nSie haben CORS nicht konfiguriert. Was beobachten Sie?",
+    "type": "multiple_choice",
+    "options": [
+      "Der Browser blockiert den Request, d.h. der Server bekommt die Anfrage gar nicht.",
+      "Der Server verweigert die Anfrage, d.h. der Browser bekommt nur einen Fehlercode.",
+      "Der Server bearbeitet ganz normal die Anfrage und schickt eine Antwort.",
+      "Der Browser bekommt die Antwort, leitet diese aber nicht an das Frontend weiter sondern erzeugt eine Fehlermeldung. ",
+      "Der Browser bekommt die Antwort und leitet diese ganz normal an das Frontend weiter, da es sich um einen einfachen Requeset mit GET handelt."
+    ],
+    "answerText": "Der Server bearbeitet ganz normal die Anfrage und schickt eine Antwort., Der Browser bekommt die Antwort, leitet diese aber nicht an das Frontend weiter sondern erzeugt eine Fehlermeldung.",
+    "correctIndices": [
+      2
+    ]
+  },
+  {
+    "id": 39,
+    "question": "Was sind React-Hooks?",
+    "type": "multiple_choice",
+    "options": [
+      "React-Hooks sind eine Möglichkeit, Middleware-Funktionen in React zu verwenden.",
+      "React-Hooks sind Funktionen, die es erlauben, in Funktionskomponenten Zustand zu speichern und auf Lebenszyklus-Events zu reagieren.",
+      "React-Hooks sind eine Möglichkeit, in React auf Events zu reagieren."
+    ],
+    "answerText": "React-Hooks sind Funktionen, die es erlauben, in Funktionskomponenten Zustand zu speichern und auf Lebenszyklus-Events zu reagieren.",
+    "correctIndices": [
+      1
+    ]
+  },
+  {
+    "id": 40,
+    "question": "Wozu dient die Boundary-Komponente des Backends?",
+    "type": "multiple_choice",
+    "options": [
+      "Sie ist für die Kommunikation zwischen einem System und der Außenwelt zuständig.",
+      "Sie ist für die Kommunikation zwischen einem System und der Datenbank zuständig.",
+      "Sie validiert die Daten, d.h. sie prüft, dass bestimmte Grenzen (Boundaries) eingehalten werden.",
+      "Sie stellt sicher, dass bestimmte Grenzen (Boundaries) eingehalten werden.",
+      "Sie modelliert die Domänenklassen, d.h. sie bindet (bounds) Klassen an die Persistierung."
+    ],
+    "answerText": "Sie ist für die Kommunikation zwischen einem System und der Außenwelt zuständig.",
+    "correctIndices": [
+      0
+    ]
+  },
+  {
+    "id": 41,
+    "question": "Was ist Mongoose?",
+    "type": "multiple_choice",
+    "options": [
+      "eine Dokument-Datenbank",
+      "eine SQL-Datenbank",
+      "ein Object-Relational-Mapper",
+      "ein Object-Document-Mapper",
+      "eine Graph-Datenbank",
+      "eine Objekt-Datenbank"
+    ],
+    "answerText": "ein Object-Document-Mapper",
+    "correctIndices": [
+      3
+    ]
+  },
+  {
+    "id": 42,
+    "question": "In der HTTP-Response können Informationen an unterschiedlicher Stelle enthalten sein. Wo können Sie diese in der Response finden?",
+    "type": "multiple_choice",
+    "options": [
+      "Im Status-Code",
+      "In der URI",
+      "In den Argumenten",
+      "Im Body",
+      "Im Header"
+    ],
+    "answerText": "Im Body, Im Header, Im Status-Code",
+    "correctIndices": [
+      0,
+      3,
+      4
+    ]
+  },
+  {
+    "id": 43,
+    "question": "Was bedeutet das Schutzziel Confidentiality?",
+    "type": "multiple_choice",
+    "options": [
+      "Nur Personen (oder andere Systeme), die berechtigt sind, dürfen Daten lesen.",
+      "Nur Personen (oder andere Systeme), die berechtigt sind, dürfen Daten schreiben.",
+      "Personen (oder andere Systeme), die berechtigt sind, können Daten lesen oder schreiben."
+    ],
+    "answerText": "Nur Personen (oder andere Systeme), die berechtigt sind, dürfen Daten lesen.",
+    "correctIndices": [
+      0
+    ]
+  },
+  {
+    "id": 44,
+    "question": "Welche der folgenden Verfahren bilden eine Zwei-Faktor-Authentifizierung?",
+    "type": "multiple_choice",
+    "options": [
+      "Passwort und Mobile TAN (die ans Handy geschickt wird)",
+      "Karte (mit Chip o.ä.) und Mobile TAN (die ans Handy geschickt wird)",
+      "Passwort und Sicherheitsabfrage",
+      "Passwort und PIN",
+      "Passwort und Fingerabdruck"
+    ],
+    "answerText": "Passwort und Fingerabdruck, Passwort und Mobile TAN (die ans Handy geschickt wird)",
+    "correctIndices": [
+      0,
+      4
+    ]
+  },
+  {
+    "id": 45,
+    "question": "In einer relationalen Datenbank spricht man von Spalten (Columns). Was ist das Pendant (die Entsprechung) in MongoDB?",
+    "type": "multiple_choice",
+    "options": [
+      "Sammlungen (Collections)",
+      "Zeilen (Rows)",
+      "Pfade (Paths)",
+      "Tabellen (Tables)",
+      "Dokumente (Documents)",
+      "Objekte (Objects)",
+      "Graphen (Graphs)",
+      "Spalten (Columns)",
+      "Felder (Fields)"
+    ],
+    "answerText": "Felder (Fields)",
+    "correctIndices": [
+      8
+    ]
+  },
+  {
+    "id": 46,
+    "question": "Wie heißt das Modell, in dem wir modellieren, welche Daten in unserem System aus fachlicher Sicht vorkommen?",
+    "type": "multiple_choice",
+    "options": [
+      "Aktivitäts-Modell",
+      "Domänenklassen-Modell",
+      "Komponenten-Modell",
+      "Anwendungsfall-Modell"
+    ],
+    "answerText": "Domänenklassen-Modell",
+    "correctIndices": [
+      1
+    ]
+  },
+  {
+    "id": 47,
+    "question": "Sie wollen über REST und HTTP eine Funktion zum Laden von Bildern bereitstellen. Welche HTTP-Methode ist hierfür am besten geeignet?",
+    "type": "multiple_choice",
+    "options": [
+      "GET, da hier immer eine Ressource gelesen werden soll.",
+      "HEAD, da ja am Ende der Client nur eine URL benötigt und nicht das ganze Bild.",
+      "PUT, da es sich bei Bildern nicht um eine Ressource handelt.",
+      "POST, da hier die ID (oder der Name) des Bildes sicherer im Request-Body übertragen wird."
+    ],
+    "answerText": "GET, da hier immer eine Ressource gelesen werden soll.",
+    "correctIndices": [
+      0
+    ]
+  },
+  {
+    "id": 48,
+    "question": "Welche Aspekte können Sie sinnvollerweise in einer Security-Pipeline mit Middlewares im Express-Backend adressieren?",
+    "type": "multiple_choice",
+    "options": [
+      "Cookie-Verwaltung",
+      "Authentifizierung",
+      "Logging",
+      "Code-Reviews",
+      "Rate-Limiting",
+      "Verschlüsselung",
+      "Penetrationstests",
+      "Autorisierung",
+      "Datenbankabfragen",
+      "Hashing"
+    ],
+    "answerText": "Rate-Limiting, Authentifizierung, Logging, Autorisierung",
+    "correctIndices": [
+      1,
+      2,
+      4,
+      7
+    ]
+  },
+  {
+    "id": 49,
+    "question": "Welches Framework in JavaScript kann man zur Umsetzung de des Frontends einsetzen?",
+    "type": "multiple_choice",
+    "options": [
+      "Spring",
+      "Mongoose",
+      "Express",
+      "React"
+    ],
+    "answerText": "React",
+    "correctIndices": [
+      3
+    ]
+  },
+  {
+    "id": 50,
+    "question": "Wieviele verschiedene Origins zählen Sie bei folgenden URLs:\n1. http://www.example.com\n2. https://www.example.com\n3. https://www.example.com:3000\n4. https://www.example.com:3001\n5. https://www.example.com:3001/somepath/index.html\n6. https://www.example.com:3001/anotherpath/index.html",
+    "type": "multiple_choice",
+    "options": [
+      "6",
+      "5",
+      "2",
+      "4",
+      "1",
+      "3"
+    ],
+    "answerText": "4",
+    "correctIndices": [
+      3
+    ]
+  },
+  {
+    "id": 51,
+    "question": "Ist ein JWT genauso sicherheitskritisch wie ein Passwort und warum?",
+    "type": "multiple_choice",
+    "options": [
+      "Nein, da es ja nur ein JSON-Objekt ist und verschlüsselt ist.",
+      "Nein, da man mit dem JWT selbst nichts anfangen kann.",
+      "Ja, weil es ja das Passwort enhält.",
+      "Ja, da es das Passwort ersetzt."
+    ],
+    "answerText": "Ja, da es das Passwort ersetzt.",
+    "correctIndices": [
+      3
+    ]
+  },
+  {
+    "id": 52,
+    "question": "Was sind die Eigenschaften des Uniform Interfaces im Kontext von REST?",
+    "type": "multiple_choice",
+    "options": [
+      "Selbst-beschreibende Messages (Requests/Responses sind ohne vorangegangene Requests/Responses verständlich).",
+      "Die Resources werden über die Repräsentation (etwa JSON) manipuliert.",
+      "Ressourcen müssen als JSON-Objekte dargestellt werden.",
+      "Resources werden über Bezeichner (URIs) identifiziert.",
+      "Die Kommunikation zwischen den Komponenten erfolgt über das HTTP-Protokoll."
+    ],
+    "answerText": "Resources werden über Bezeichner (URIs) identifiziert., Die Resources werden über die Repräsentation (etwa JSON) manipuliert., Selbst-beschreibende Messages (Requests/Responses sind ohne vorangegangene Requests/Responses verständlich).",
+    "correctIndices": [
+      0,
+      1,
+      3
+    ]
+  },
+  {
+    "id": 53,
+    "question": "Was ist ein Zertifikat im Sinne von OpenSSL?",
+    "type": "multiple_choice",
+    "options": [
+      "Eine Datei, die einen öffentlichen Schlüssel enthält.",
+      "Eine Datei, die eine Signatur und einen öffentlichen Schlüssel enthält.",
+      "Eine Datei, die eine Signatur und einen privaten Schlüssel enthält.",
+      "Eine Datei, die eine Signatur, einen öffentlichen und einen privaten Schlüssel enthält.",
+      "Eine Datei, die einen öffentlichen und einen privaten Schlüssel enthält.",
+      "Eine Datei, die einen privaten Schlüssel enthält.",
+      "Eine Datei, die eine Signatur enthält."
+    ],
+    "answerText": "Eine Datei, die eine Signatur und einen öffentlichen Schlüssel enthält.",
+    "correctIndices": [
+      1
+    ]
+  },
+  {
+    "id": 54,
+    "question": "Wie können Sie am einfachsten Informationen von einer Funktionskomponente zu ihren Kindern (die ebenfalls Funktionskomponente sind) übermitteln?",
+    "type": "multiple_choice",
+    "options": [
+      "Über Props der Kinder-Funktionskomponente.",
+      "Über States der Kinder-Funktionskomponente.",
+      "Über den useContext-Hook",
+      "Über den useEffect-Hook"
+    ],
+    "answerText": "Über Props der Kinder-Funktionskomponente.",
+    "correctIndices": [
+      0
+    ]
+  },
+  {
+    "id": 55,
+    "question": "Ordnen Sie die folgenden Verfahren zum Speichern des JWT beim Client nach ihrer Sicherheit.\na.In einem HTTP-only Cookie\nb.In einem normalen Cookie\nc.In einer lokalen Variable",
+    "type": "open",
+    "options": [],
+    "answerText": "a.keine Gefahr vor XSS b.Gefahr vor XSS c.geringe Gefahr vor XSS",
+    "correctIndices": []
+  },
+  {
+    "id": 56,
+    "question": "Sie sind Hacker und haben ein Jwt abgefangen, wie kommen Sie an den Inhalt?\na.Gar nicht, dafür bräuchte ich das Secret.\nb.Ich kann das JWT mit einem Online-Decoder entschlüsseln.\nc.Ich kann das JWT einfach mit einem Base64 in Text umwandeln.",
+    "type": "open",
+    "options": [],
+    "answerText": "Ich kann das JWT einfach mit einem Base64 in Text umwandeln.",
+    "correctIndices": []
+  },
+  {
+    "id": 57,
+    "question": "Was macht die Methode sign der JavaScript-Bibliothek jsonwebtoken?\na.Sie verschlüsselt und signiert ein JSON-Objekt.\nb.Sie verschlüsselt ein JSON-Objekt als Base64-codierte Binärdatei.\nc.Sie wandelt ein JSON-Objekt in einen String um und hängt einen Hashcode an.",
+    "type": "open",
+    "options": [],
+    "answerText": "Sie wandelt ein JSON-Objekt in einen String um und hängt einen Hashcode an.",
+    "correctIndices": []
+  },
+  {
+    "id": 58,
+    "question": "Wofür steht das 'A' in der Abkürzung CIA im Zusammenhang mit der Sicherheit von Webanwendungen?\na.Authentication\nb.Access\nc.Availability\nd.Authorization",
+    "type": "open",
+    "options": [],
+    "answerText": "Availability",
+    "correctIndices": []
+  },
+  {
+    "id": 59,
+    "question": "Welchen HTTP-Statuscode würden Sie beim Aufruf eines Backends erwarten, wenn die Eingabe fehlerhaft ist.",
+    "type": "open",
+    "options": [],
+    "answerText": "400",
+    "correctIndices": []
+  },
+  {
+    "id": 60,
+    "question": "Gegeben sei folgende React-Funktionskomponente:\nexport async function Comp() {\nconst main = await loadMainData();\nreturn <p>{main.content}</p>\n}\nWas ist das (Haupt-) Problem?\na.Die Funktion darf nicht asynchron sein.\nb.Es findet keine Fehlerbehandlung statt.\nc.main könnte undefined sein.",
+    "type": "open",
+    "options": [],
+    "answerText": "Die Funktion darf nicht asynchron sein.",
+    "correctIndices": []
+  },
+  {
+    "id": 61,
+    "question": "Mit welchem Prop registrieren Sie eine Validierungsfunktion einer Controlled-Component, wenn Sie bei jedem Tastendruck eine Validierung durchführen wollen?\na.inInput\nb.onBlur\nc.obSubmit\nd.onChange",
+    "type": "open",
+    "options": [],
+    "answerText": "onChange",
+    "correctIndices": []
+  },
+  {
+    "id": 62,
+    "question": "Was ist die Single Origin Policy?\na.Sie ist ein Sicherheitsmechanismus des Servers, der verhindert, dass auf eine andere Origin zugreift als die, von der es geladen wurde.\nb.Sie ist ein Sicherheitsmechanismus des Browsers, der verhindert, dass auf eine andere Origin zugreift als die, von der es geladen wurde.",
+    "type": "open",
+    "options": [],
+    "answerText": "Sie ist ein Sicherheitsmechanismus des Browsers, der verhindert, dass auf eine andere Origin zugreift als die, von der es geladen wurde.",
+    "correctIndices": []
+  },
+  {
+    "id": 63,
+    "question": "Wie wird eine Ressource im Kontext von Rest dargestellt?\na.Eine Ressource wird als XML-Objekt dargestellt.\nb.Eine Ressource kann viele Repräsentationen haben.\nc.Eine Ressource wird als HTML-Objekt dargestellt.\nd.Eine Ressource wird als JSON-Objekt dargestellt.",
+    "type": "open",
+    "options": [],
+    "answerText": "Eine Ressource kann viele Repräsentationen haben.",
+    "correctIndices": []
+  },
+  {
+    "id": 64,
+    "question": "Welches Framework in JavaScript kann man zur Umsetzung des Boundarylayers der Backend-Komponente einsetzen?\na.Spring\nb.React\nc.Mongoose\nd.Express",
+    "type": "open",
+    "options": [],
+    "answerText": "Express",
+    "correctIndices": []
+  },
+  {
+    "id": 65,
+    "question": "In einer relationalen Datenbank spricht man von Tabellen (Tables). Was ist das Pendant (die Entsprechung) in MongoDB?\na.Objekte (Objects)\nb.Zeilen (Rows)\nc.Graphen (Graphs)\nd.Felder (Fields)\ne.Spalten (Columns)\nf.Sammlungen (Collections)\ng.Pfade (Paths)\nh.Tabellen (Tables)\ni.Dokumente (Documents)",
+    "type": "open",
+    "options": [],
+    "answerText": "Sammlungen (Collections)",
+    "correctIndices": []
+  },
+  {
+    "id": 66,
+    "question": "Was bedeutet der HTTP-Response Status-Code 400?\na.Anfrage wird nicht unterstützt (Not implemented).\nb.Der Client ist nicht berechtigt, die Aktion auszuführen (Unauthorized).\nc.Die Anfrage wurde erfolgreich bearbeitet, die Antwort enthält aber keinen Inhalt (Content).\nd.Die Anfrage ist Fehlerhafgt (Bad Request).\ne.Die angefragte Resource gibt es nicht.\nf.Die Resource wurde erfolgreich angelegt.\ng.OK, Anfrage wurde erfolgreich bearbeitet.\nh.Interner Serverfehler (Internal Server Error).",
+    "type": "open",
+    "options": [],
+    "answerText": "Die Anfrage ist Fehlerhafgt (Bad Request).",
+    "correctIndices": []
+  },
+  {
+    "id": 67,
+    "question": "Was ist ein Endpoint im Kontext von REST-Servern?\na.Ein Endpoint ist eine Kombination aus URI und HTTP-Methode.\nb.Ein Endpoint ist eine Ressource.\nc.Ein Endpoint ist eine URI mit Angabe des Hosts.",
+    "type": "open",
+    "options": [],
+    "answerText": "Ein Endpoint ist eine Kombination aus URI und HTTP-Methode.",
+    "correctIndices": []
+  },
+  {
+    "id": 68,
+    "question": "Welche der folgenden Methoden sind gültige HTTP-Request-Methoden?\na.POST\nb.PUT\nc.GET\nd.WRITE\ne.READ\nf.DELETE\ng.INSERT\nh.UPDATE",
+    "type": "open",
+    "options": [],
+    "answerText": "POST, PUT, GET, DELETE",
+    "correctIndices": []
+  },
+  {
+    "id": 69,
+    "question": "Gegeben sei folgender Code:\nconst router = express.Router();\nrouter.get(\"/a\", myFunc)\napp.use(\"/b\", router);\nWelche URL (mit Host \"host\", Protokoll \"http\" und ohne weiter Portangabe) ruft myFunc auf?\na.http://host/a/b\nb.http://host/b\nc.http://host/a\nd.http://host/b/a",
+    "type": "open",
+    "options": [],
+    "answerText": "http://host/b/a",
+    "correctIndices": []
+  },
+  {
+    "id": 70,
+    "question": "In JavaScript gibt es ein bekanntes Muster, um benutzerdefinierte Funktionen nacheinander auszuführen. Wie heißt dieses Muster im JavaScript-Umfeld?\na.Express\nb.Chain of responsibility\nc.Pipeline\nd.Middleware\ne.Filters\nf.Strategy",
+    "type": "open",
+    "options": [],
+    "answerText": "Middleware",
+    "correctIndices": []
+  },
+  {
+    "id": 71,
+    "question": "In einer relationalen Datenbank spricht man von Zeilen (Rows). Was ist das Pendant (die Entsprechung) in MongoDB?",
+    "type": "multiple_choice",
+    "options": [
+      "Sammlungen (Collections)",
+      "Zeilen (Rows)",
+      "Pfade (Paths)",
+      "Tabellen (Tables)",
+      "Dokumente (Documents)",
+      "Objekte (Objects)",
+      "Graphen (Graphs)",
+      "Spalten (Columns)",
+      "Felder (Fields)"
+    ],
+    "answerText": "Dokumente (Documents)",
+    "correctIndices": [
+      4
+    ]
+  },
+  {
+    "id": 72,
+    "question": "Welche Möglichkeit gibt es, um einen Endpoint in Express zu definieren?\na.Man meldet eine Unterklasse von RequestHandler bei einem Router an.\nb.Man meldet eine Lambda bei einem Router an.\nc.Man meldet eine benannte Funktion an bei einem Router an.",
+    "type": "open",
+    "options": [],
+    "answerText": "Man meldet eine Lambda bei einem Router an., Man meldet eine benannte Funktion an bei einem Router an.",
+    "correctIndices": []
+  },
+  {
+    "id": 73,
+    "question": "Welches Framework in JavaScript kann man zur Umsetzung des Entitätslayers der Backend-Komponente einsetzen?\na.React\nb.Mongoose\nc.Spring\nd.Express",
+    "type": "open",
+    "options": [],
+    "answerText": "Mongoose",
+    "correctIndices": []
+  },
+  {
+    "id": 74,
+    "question": "Geben Sie an, wie die Lebensdauer von Daten ist, wenn man sie in dem angegebenen Ort im Browser speichert. (Flüchtig, überlebt Reload nicht; überlebt Reload; überlebt Restart)\n1.Session Storage\n2.Speicher (als Variable)\n3.Local Storage\n4.Cookie",
+    "type": "open",
+    "options": [],
+    "answerText": "1.überlebt Reload 2.Flüchtig, überlebt Reload nicht 3.überlebt Restart 4.überlebt Restart",
+    "correctIndices": []
+  },
+  {
+    "id": 75,
+    "question": "Was macht die Methode verify der JavaScript-Bibliothek jsonwebtoken?\na.Sie entschlüsselt und verifiziert ein JSON Objekt.\nb.Sie wandelt einen String in ein JSON-Objekt und erzeugt einen Hashcode, der mit Teiles des Eingabestrings (Signatur) übereinstimmen muss.\nc.Sie entschlüsselt eine Base64-codierte Binärdatei und erzeugt ein JSON-Objekt.",
+    "type": "open",
+    "options": [],
+    "answerText": "Sie wandelt einen String in ein JSON-Objekt und erzeugt einen Hashcode, der mit Teiles des Eingabestrings (Signatur) übereinstimmen muss.",
+    "correctIndices": []
+  },
+  {
+    "id": 76,
+    "question": "Was bedeutet der HTTP-Response Status-Code 401?\na.Anfrage wird nicht unterstützt (Not implemented).\nb.Der Client ist nicht berechtigt, die Aktion auszuführen (Unauthorized).\nc.Die Anfrage wurde erfolgreich bearbeitet, die Antwort enthält aber keinen Inhalt (Content).\nd.Die Anfrage ist Fehlerhafgt (Bad Request).\ne.Die angefragte Resource gibt es nicht.\nf.Die Resource wurde erfolgreich angelegt.\ng.OK, Anfrage wurde erfolgreich bearbeitet.\nh.Interner Serverfehler (Internal Server Error).",
+    "type": "open",
+    "options": [],
+    "answerText": "Der Client ist nicht berechtigt, die Aktion auszuführen (Unauthorized).",
+    "correctIndices": []
+  },
+  {
+    "id": 77,
+    "question": "Der Client schickt eine Anfrage mit folgenden Daten (etwas gekürzt, so wie Sie sie im Browser sehen können) an Ihren Express-Server:\nRequest URL: http://localhost:3000/api/somedata/7d6s8f57g958s7d667d\nRequest Method: PUT\nContent-Type: application/json\nAuthorization: Bearer edkskjdhvkN685Nils78tvkpCJ9\nBody: {id: \"7d6s8f57g958s7d667d\" , public: false, info:\"Some data\"}\nDer Server erhält die Anfrage auch, kann allerdings nicht auf das Objekt im Body zugreifen. D.h. in folgendem Code\n...\nconst data = req.body.info\n...\nwird ein Fehler geworfen: TypeError: Cannot read properties of undefined (reading 'info')\nWoran könnte das liegen?\na.Die Validierungsregeln sind falsch.\nb.Der Aufruf muss \"const data = req.info\" lauten\nc.Der Aufruf muss \"const data = req.header.body.info\" lauten\nd.Das JWT ist abgelaufen.\ne.Es wurde vergessen in der App \"app.use('*', express.json())\" einzufügen.",
+    "type": "open",
+    "options": [],
+    "answerText": "Es wurde vergessen in der App \"app.use('*', express.json())\" einzufügen.",
+    "correctIndices": []
+  },
+  {
+    "id": 78,
+    "question": "Was ist eine Ressource im Kontext von REST?\na.Eine Ressource ist eine Entität aus dem Entitäts- bzw. Domänenklassenmodell.\nb.Eine Ressource ist ein JSON-Objekt, das von einer URI identifiziert werden kann.\nc.Eine Ressource ist eine abstrakte Identität, die von einer URI identifiziert werden kann.\nd.Eine Ressource ist ein HTML-Objekt, das von einer URI identifiziert werden kann.",
+    "type": "open",
+    "options": [],
+    "answerText": "Eine Ressource ist eine abstrakte Identität, die von einer URI identifiziert werden kann.",
+    "correctIndices": []
+  },
+  {
+    "id": 79,
+    "question": "Sie erstellen mehrere Tests mit Jest, die alle das gleiche Test-Setup (also etwa Daten in der Datenbank) benötigen. Wie würden Sie des am besten umsetzen?\na.Das Setup wird in eine Funktion mit Annotation '@BeforeEach' ausgelagert. Diese wird automatisch aufgerufen.\nb.Die Tests werden zu einem Test zusammengefasst, der das Setup enthält.\nc.Das Setup wird in eine Funktion ausgelagert, die von allen Tests zu beginn aufgerufen wird.\nd.Das Setup wird in einer Funktion 'beforeEach' ausgelagert. Diese wird automatisch aufgerufen.",
+    "type": "open",
+    "options": [],
+    "answerText": "Das Setup wird in einer Funktion 'beforeEach' ausgelagert. Diese wird automatisch aufgerufen.",
+    "correctIndices": []
+  },
+  {
+    "id": 80,
+    "question": "Wie heißt das Modell, in dem wir modellieren, welche Daten in unserem System aus fachlicher Sicht vorkommen?\na.Anwendungfall-Modell\nb.Komponenten-Modell\nc.Domänenklassen-Modell\nd.Aktivitäts-Modell",
+    "type": "open",
+    "options": [],
+    "answerText": "Domänenklassen-Modell",
+    "correctIndices": []
+  },
+  {
+    "id": 81,
+    "question": "SOP ist ein Sicherheitsfeature welcher Komponente?\na.Server (Express)\nb.Browser\nc.Frontend (React)\nd.Server (Node.js)",
+    "type": "open",
+    "options": [],
+    "answerText": "Browser",
+    "correctIndices": []
+  },
+  {
+    "id": 82,
+    "question": "Welche Arten von React-Komponenten gibt es aus technischer Sicht?\na.Stateful Components\nb.Class Component\nc.Container Components\nd.Higher Order Components\ne.Functional Components\nf.Smart Component",
+    "type": "multiple_choice",
+    "options": [
+      "Presentational Components"
+    ],
+    "answerText": "Class Components, Functional Components",
+    "correctIndices": []
+  },
+  {
+    "id": 83,
+    "question": "Wozu dient die Entitäts-Komponente des Backends?\na.Sie ist im Grunde die Umsetzung der Domänenklassen und ist u.a für die Persistierung zuständig.\nb.In ihr wird das Verhalten des Systems modelliert.\nc.Sie ist dür die Kommunikation zwischen einem System und der Außenwelt zuständig.\nd.Sie modelliert die Akteure (Entitäten) der Anwendung.",
+    "type": "open",
+    "options": [],
+    "answerText": "Sie ist im Grunde die Umsetzung der Domänenklassen und ist u.a für die Persistierung zuständig.",
+    "correctIndices": []
+  },
+  {
+    "id": 84,
+    "question": "Welche Alternativen gibt es zu REST APIs?\na.Query-Based APIs (bsopw. mit GraphQL)\nb.Service-Orientierte APIs (SOAP\nc.Event-Orientierte APIs (bspw. mit Kafka)\nd.Remote-Procedure-Calls basierte APIs",
+    "type": "open",
+    "options": [],
+    "answerText": "Query-Based APIs (bsopw. mit GraphQL), Remote-Procedure-Calls basierte APIs",
+    "correctIndices": []
+  },
+  {
+    "id": 85,
+    "question": "Was bedeutet der HTTP-Response Status-Code 200?\na.Die Anfrage wurde erfolgreich bearbeitet, die Antwort enthält aber keinen Inhalt (Content).\nb.Interner Serverfehler (Internal Server Error).\nc.Die angefragte Resource gibt es nicht.\nd.Die Resource wurde erfolgreich angelegt.\ne.Anfrage wird nicht unterstützt (Not Implemented).\nf.OK, Anfrage wurde erfolgreich bearbeitet.\ng.Der Client ist nicht berechtigt, die Aktion auszuführen (Unauthorized).\nh.Die Anfrage ist fehlerhaft (Bad Request).",
+    "type": "open",
+    "options": [],
+    "answerText": "OK, Anfrage wurde erfolgreich bearbeitet.",
+    "correctIndices": []
+  },
+  {
+    "id": 86,
+    "question": "Welche Angriffsarten adressiert die Sanitisierung von Daten?\na.SQL-Injection\nb.Cross-Site-Scripting\nc.(Distributed) Denial of Service",
+    "type": "open",
+    "options": [],
+    "answerText": "Cross-Site-Scripting",
+    "correctIndices": []
+  },
+  {
+    "id": 87,
+    "question": "Was ist die wichtigste Ergänzung von Mongoose bezüglich MongoDB?\na.Bei Mongoose können wir Daten hierarchisch definieren.\nb.Bei Mongoose können wir Indizes definieren.\nc.Bei Mongoose können wir Fremdschlüssel definieren.\nd.Bei Mongoose können wir ein Schema definieren.",
+    "type": "open",
+    "options": [],
+    "answerText": "Bei Mongoose können wir ein Schema definieren.",
+    "correctIndices": []
+  },
+  {
+    "id": 88,
+    "question": "Das Frontend schickt Daten im Request-Body an das mit Express geschrieben Backend.\nObwohl die Daten richtig verschickt werden, können Sie nicht über 'request.body? darauf zugreifen. Woran könnte das liegen?\na.Sie haben Middleware express.json() nicht eingebunden.\nb.Sie haben Middleware express.raw() nicht eingebunden.\nc.Sie haben Middleware express.text() nicht eingebunden.\nd.Sie haben Middleware express.surlencoded() nicht eingebunden.",
+    "type": "open",
+    "options": [],
+    "answerText": "Sie haben Middleware express.json() nicht eingebunden., Sie haben Middleware express.surlencoded() nicht eingebunden.",
+    "correctIndices": []
+  },
+  {
+    "id": 89,
+    "question": "Wozu dient die Kontroll-Komponente des Backends?\na.Sie ist für die Kommunikation zwischen einem System und der Außenwelt zuständig.\nb.Sie validiert (kontrollieren) die Daten, die eingegeben werden.\nc.In ihr wird das Verhalten des Systems modelliert.\nd.Sie modelliert die Akteure (Kontrolleure) der Anwendung.",
+    "type": "open",
+    "options": [],
+    "answerText": "In ihr wird das Verhalten des Systems modelliert.",
+    "correctIndices": []
+  },
+  {
+    "id": 90,
+    "question": "Was bedeutet der HTTP-Response Status-Code 200?\na.Die Anfrage wurde erfolgreich bearbeitet, die Antwort enthält aber keinen Inhalt (Content).\nb.Interner Serverfehler (Internal Server Error).\nc.Die angefragte Resource gibt es nicht.\nd.Die Resource wurde erfolgreich angelegt.\ne.Anfrage wird nicht unterstützt (Not Implemented).\nf.OK, Anfrage wurde erfolgreich bearbeitet.\ng.Der Client ist nicht berechtigt, die Aktion auszuführen (Unauthorized).\nh.Die Anfrage ist fehlerhaft (Bad Request).",
+    "type": "open",
+    "options": [],
+    "answerText": "Die Anfrage wurde erfolgreich bearbeitet, die Antwort enthält aber keinen Inhalt (Content).",
+    "correctIndices": []
+  },
+  {
+    "id": 91,
+    "question": "Eine Funktionskomponente ist ja nur eine Funktion. Von wem wird diese wann aufgerufen? Eine kurze Antwort reicht aus.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. Die Funktion wird von React aufgerufen. 2. Die geschieht beim ersten Mal, wenn die Komponente angezeigt wird. 3. Danach nur, wenn sich ein State (useState oder indirekt über useContext) der Komponente geändert hat.",
+    "correctIndices": []
+  },
+  {
+    "id": 92,
+    "question": "Sie beginnen mit der Anforderungsanalyse für ein Softwaresystem bzw. Webanwendungen. Wie heißt das erste Diagramm, mit dem Sie anfangen sollten?\nGeben Sie einfach nur den deutschen Namen an, ohne \"Diagramm\". Also X und nicht X-Diagramm.",
+    "type": "open",
+    "options": [],
+    "answerText": "Systemkontext",
+    "correctIndices": []
+  },
+  {
+    "id": 93,
+    "question": "Nennen Sie drei verschiedene Status-Codes, die eine erfolgreiche HTTP-Response haben kann.\nGeben Sie jeweils den Code sowie eine ganz kurze Beschreibung (ein Stichwort genügt) an.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. 200, OK (unspezifisch, bspw. bei GET oder PUT) 2. 201, Created (bspw. bei POST) 3. 204, No Content (bspw. bei",
+    "correctIndices": []
+  },
+  {
+    "id": 94,
+    "question": "Was ist an folgender Middleware problematisch? (Die Nummern geben die Zeilennummern an.)\n1. export async function requiresAuthentic\n2. try {\n3.\n4.\n5.\n6.\nconst jwtString = req. cookies?.\nreq. userId = verifyJWT (jwtStrin\n} catch (err) {\nres. sendStatus(401);\n7.\n8. next ()\n9.}\nGeben Sie eine kurze Erklärung, also was bei Ausführung passiert und warum, sowie wie das Problem gelöst werden kann.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. Im Fehlerfall wird eine Antwort verschickt (6) und dann zusätzlich in (8) next () aufgerufen. 2. Eine Antwort kann nur einmal verschickt werden. Das next () ist im besten Fall wirkungslos (wenn im weiteren ein Request-Handler erneut eine Antwort verschickt, ist dies wirkungslos), im schlimmsten Fall wird noch der Zustand des Servers verändert, was man hier nicht sieht. 3. Den Aufruf von next () nach (5) verschieben oder nach (6) ein return einfügen.",
+    "correctIndices": []
+  },
+  {
+    "id": 95,
+    "question": "Welche Technologien werden im MERN-Stack verwendet? Zählen Sie die richtigen Technologien auf",
+    "type": "open",
+    "options": [],
+    "answerText": "1. MongoDB 2. Express 3. React 4. Node.js",
+    "correctIndices": []
+  },
+  {
+    "id": 96,
+    "question": "Was beschreibt ein Lollipop in einem Komponentendiagramm?\nEs geht hier im wesentlichen um die Syntax des UML-Diagramms. D.h. Sie sollen nicht eine ausführliche Beschreibung angeben,\nsondern ganz kurz erklären, was das Symbol bedeutet.\nGibt es eine alternative Darstellung?",
+    "type": "open",
+    "options": [],
+    "answerText": "Ein von einer Komponente 1. bereitgestelltes (provided) 2. Interface. 3. Alternativ kann man ein Interface zeichnen, dass von der Komponente realisiert wird.",
+    "correctIndices": []
+  },
+  {
+    "id": 97,
+    "question": "Nennen Sie die drei Hauptbestandteile eines unterschriebenen, nicht verschlüsselten JWTs.\nGeben Sie die Bezeichnung an mit jeweils mit ganz kurzer Erklarung.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. Header: Metadaten wie verwendeten Signatur-Algorithmus. 2. Payload: enthalt die Claims, also die anwendungsspezifischen Informationen (Nutzer-ID etc.) 3. Signature (HMAC): ein Hashcode, der aus demPayload und einem Secret generiert wird, um die Integrität des JWT zu gewährleisten.",
+    "correctIndices": []
+  },
+  {
+    "id": 98,
+    "question": "Aus welchen Informationen der Anforderungsanalyse mit UML können wir die Classifier (Module oder Klassen),\ndie wir auf die Architekturkomponenten unseres Backends verteilen, ableiten? Stichworte genügen.",
+    "type": "open",
+    "options": [],
+    "answerText": "1. Aus dem Anwendungsfalldiagramm (was aber nur eine Übersicht ist), daher genauer 2. Aus den Anwendungsfallbeschreibungen (textuell oder weitere Modelle) 3. Dem Domänenklassenmodell.",
+    "correctIndices": []
+  },
+  {
+    "id": 99,
+    "question": "Wo ist geregelt, dass man personenbezogene Daten vor falschem Zugriff nach Stand der Technik angemessen schützen muss? Geben Sie nur das Akronym ein.",
+    "type": "open",
+    "options": [],
+    "answerText": "DSGVO",
+    "correctIndices": []
+  },
+  {
+    "id": 100,
+    "question": "Was sind die Unterschiede zwischen MongoDB und einer relationalen Datenbank?",
+    "type": "multiple_choice",
+    "options": [
+      "Bei MongoDB hat man keine Indizes (Indexes).",
+      "Bei MongoDB benötigt man keinen Datenbank-Server.",
+      "Bei MongoDB können Daten hierarchisch sein, also in verschachtelten Strukturen.",
+      "Bei MongoDB benötigt man nicht unbedingt ein Schema."
+    ],
+    "answerText": "Bei MongoDB benötigt man nicht unbedingt ein Schema., Bei MongoDB können Daten hierarchisch sein, also in verschachtelten Strukturen.",
+    "correctIndices": [
+      2,
+      3
+    ]
+  },
+  {
+    "id": 101,
+    "question": "Gegeben sei folgender Code im Service-Layer, der Mongoose verwendet\n(Data ist ein Mongoose-Model, name ist ein String, public ein Boolean -- beide sind optional):\nexport async function updateData(dataResource) {\nconst data = await Data.findById(dataResource.id);\nif (!data) throw new Error(\"Kein Data\");\nif (dataResource.name) {\ndata.name = dataResource.name;\n}\nif (dataResource.public) {\ndata.public = dataResource.public;\n}\nawait data.save();\nreturn data;\n}\nWas ist an diesem Code problematisch? Geben Sie nur kurze Stichpunkte an.",
+    "type": "open",
+    "options": [],
+    "answerText": "public ist ein Boolean → false wird nicht übernommen Prüfung mit if (dataResource.public) ist falsch Optionale Felder werden nicht korrekt aktualisiert Update-Logik ist fehleranfällig Besser auf undefined prüfen statt auf Truthy-Werte",
+    "correctIndices": []
+  },
+  {
+    "id": 102,
+    "question": "Welche Eigenschaft ist für eine Hashing-Funktion für kryptographische Anwendungen beim Signieren von Public-Keys im Allgemeinen relevant?\nGeben Sie nur den Fachbegriff an, ohne weitere Zusatze oder Erklärungen.",
+    "type": "open",
+    "options": [],
+    "answerText": "1.REST ist ein Architekturstil für Web-APIs 2.Ressourcen werden über URLs und HTTP-Methoden angesprochen 3.Kommunikation ist zustandslos (stateless)",
+    "correctIndices": []
+  },
+  {
+    "id": 103,
+    "question": "Sie haben im Frontend ein Formular umgesetzt und verschicken die Daten über HTTP-POST. Wie können Sie auf die Daten zugreifen? Stichpunkte genügen.",
+    "type": "open",
+    "options": [],
+    "answerText": "1.request.body (Request-Body auslesen) 2.Passende Middleware im Backend verwenden (express.json()) 3.Zugriff über die Feldnamen aus dem Formular",
+    "correctIndices": []
+  },
+  {
+    "id": 104,
+    "question": "Mit welchen Funktionen kann man in Express den HTTP-Statuscode setzen? Geben Sie den Namen der Funktionen ggf. mit Receiver an.",
+    "type": "open",
+    "options": [],
+    "answerText": "sendStatus()",
+    "correctIndices": []
+  },
+  {
+    "id": 105,
+    "question": "Sie sind Hacker und haben ein JWT abgefangen. Sie wissen, dass das JWT signiert aber nicht verschlüssel ist. Wie kommen Sie an den Inhalt des JWT?\nSkizzieren Sie das Vorgehen.",
+    "type": "open",
+    "options": [],
+    "answerText": "1.JWT besteht aus Header.Payload.Signatur 2.Payload ist nur Base64URL‑kodiert, nicht verschlüsselt 3.Payload-Teil kopieren und Base64URL dekodieren",
+    "correctIndices": []
+  }
+]
