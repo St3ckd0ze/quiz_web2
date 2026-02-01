@@ -28,10 +28,36 @@ export function normalizeCode(code: string): string {
  */
 export function compareCode(userCode: string, solutionCode: string): boolean {
     const normUser = normalizeCode(userCode);
-    const normSolution = normalizeCode(solutionCode);
+    
+    // The user convention is that multiple answers are separated by ".," 
+    // (a period ending the previous answer, then a comma).
+    // We split by this delimiter to get all acceptable variations.
+    const possibleSolutions = solutionCode.split(/.,\s*/);
 
-    console.log('User (norm):', normUser);
-    console.log('Solution (norm):', normSolution);
+    for (const sol of possibleSolutions) {
+        let cleanSol = sol.trim();
+        // Remove trailing dot from the solution option if present, 
+        // as it's likely punctuation for the sentence, not the code.
+        if (cleanSol.endsWith('.')) {
+            cleanSol = cleanSol.slice(0, -1);
+        }
 
-    return normUser === normSolution;
+        const normSolution = normalizeCode(cleanSol);
+
+        // Also normalize the user code by removing a potentially added trailing dot
+        // (to be forgiving if they typed it like the sentence).
+        let cleanUser = normUser;
+        if (cleanUser.endsWith('.')) {
+            cleanUser = cleanUser.slice(0, -1);
+        }
+
+        console.log('User (norm):', cleanUser);
+        console.log('Solution fragment (norm):', normSolution);
+
+        if (cleanUser === normSolution) {
+            return true;
+        }
+    }
+
+    return false;
 }
