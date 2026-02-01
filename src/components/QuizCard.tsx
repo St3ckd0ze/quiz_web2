@@ -190,6 +190,15 @@ export const QuizCard: React.FC<QuizCardProps> = ({
                     question={question}
                     initialAnswers={savedAnswer?.matchingAnswers}
                     isRevealed={isRevealed || !!savedAnswer?.isRevealed}
+                    onInterimChange={(answers) => {
+                        onAnswer({
+                            questionId: question.id,
+                            selectedIndices: [],
+                            isCorrect: false,
+                            isRevealed: false,
+                            matchingAnswers: answers
+                        });
+                    }}
                     onAnswer={(correct, answers) => {
                         setIsCorrect(correct);
                         setIsRevealed(true);
@@ -289,14 +298,24 @@ export const QuizCard: React.FC<QuizCardProps> = ({
                     ← Previous
                 </button>
 
-                {/* Show Next only if revealed (answered) OR if we are reviewing history (savedAnswer exists)
-            Actually user wants to skip? Probably not. Enforce answering.
-         */}
-                {(isRevealed || savedAnswer) && (
-                    <button className="btn btn-primary" onClick={onNext}>
-                        {isLast ? 'Finish Quiz' : 'Next →'}
-                    </button>
-                )}
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    {!isRevealed && !savedAnswer && (
+                        <button
+                            className="btn btn-secondary"
+                            onClick={onNext}
+                            style={{ opacity: 0.7 }}
+                            title="Skip this question"
+                        >
+                            Skip
+                        </button>
+                    )}
+
+                    {(isRevealed || savedAnswer) && (
+                        <button className="btn btn-primary" onClick={onNext}>
+                            {isLast ? 'Finish Quiz' : 'Next →'}
+                        </button>
+                    )}
+                </div>
             </div>
         </div>
     );

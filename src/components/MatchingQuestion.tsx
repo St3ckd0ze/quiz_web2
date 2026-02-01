@@ -4,11 +4,18 @@ import type { Question } from '../types';
 interface MatchingQuestionProps {
     question: Question;
     onAnswer: (isCorrect: boolean, answers: Record<string, string>) => void;
+    onInterimChange?: (answers: Record<string, string>) => void;
     initialAnswers?: Record<string, string>;
     isRevealed: boolean;
 }
 
-export function MatchingQuestion({ question, onAnswer, initialAnswers = {}, isRevealed }: MatchingQuestionProps) {
+export function MatchingQuestion({
+    question,
+    onAnswer,
+    onInterimChange,
+    initialAnswers = {},
+    isRevealed
+}: MatchingQuestionProps) {
     const [answers, setAnswers] = useState<Record<string, string>>(initialAnswers);
 
     useEffect(() => {
@@ -19,19 +26,18 @@ export function MatchingQuestion({ question, onAnswer, initialAnswers = {}, isRe
         if (isRevealed) return;
         const newAnswers = { ...answers, [leftId]: value };
         setAnswers(newAnswers);
-
-        // Auto-check if all are filled? No, let parent handle check via button.
-        // We just propagate state? Actually parent expects "onAnswer" to be final check?
-        // Wait, QuizCard logic usually calls onAnswer when "Check" is clicked.
-        // But here we need to store interim state too? 
-        // For simplicity, let's just update local state and let QuizCard trigger check?
-        // Ah, QuizCard needs to know if "Check" button should be enabled (all filled?).
-        // Current QuizCard architecture is a bit rigid.
-        // Let's defer "onAnswer" call until a "Check" button INSIDE here is clicked?
-        // Or better: Let QuizCard handle the "Check" button as usual, but we need to hoist state?
-        // But QuizCard doesn't hoist state for CodeQuestion either.
-        // Let's use the CodeQuestion pattern: Contain everything here, including the "Check" button if needed.
+        onInterimChange?.(newAnswers);
     };
+    // We just propagate state? Actually parent expects "onAnswer" to be final check?
+    // Wait, QuizCard logic usually calls onAnswer when "Check" is clicked.
+    // But here we need to store interim state too? 
+    // For simplicity, let's just update local state and let QuizCard trigger check?
+    // Ah, QuizCard needs to know if "Check" button should be enabled (all filled?).
+    // Current QuizCard architecture is a bit rigid.
+    // Let's defer "onAnswer" call until a "Check" button INSIDE here is clicked?
+    // Or better: Let QuizCard handle the "Check" button as usual, but we need to hoist state?
+    // But QuizCard doesn't hoist state for CodeQuestion either.
+    // Let's use the CodeQuestion pattern: Contain everything here, including the "Check" button if needed.
 
     const handleCheck = () => {
         // Compare answers with question.answerPairs

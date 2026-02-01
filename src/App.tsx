@@ -168,11 +168,43 @@ function App() {
 
       {gameState === 'QUIZ' && shuffledQuestions.length > 0 && (
         <div>
-          <div className="progress-container">
-            <div
-              className="progress-fill"
-              style={{ width: `${((currentQuestionIndex + 1) / shuffledQuestions.length) * 100}%` }}
-            />
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '1rem' }}>
+            <div className="progress-container" style={{ flex: 1, minWidth: '200px' }}>
+              <div
+                className="progress-fill"
+                style={{ width: `${((currentQuestionIndex + 1) / shuffledQuestions.length) * 100}%` }}
+              />
+            </div>
+
+            <div className="jump-to-id" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'var(--glass-bg)', padding: '4px 10px', borderRadius: '4px', border: '1px solid var(--glass-border)' }}>
+              <span style={{ fontSize: '0.8rem', opacity: 0.7 }}>Jump to Question ID:</span>
+              <input
+                type="number"
+                placeholder="ID"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    const id = parseInt((e.target as HTMLInputElement).value);
+                    const index = shuffledQuestions.findIndex(q => q.id === id);
+                    if (index !== -1) {
+                      setCurrentQuestionIndex(index);
+                      (e.target as HTMLInputElement).value = '';
+                    } else {
+                      alert(`Question with ID ${id} not found in this quiz session.`);
+                    }
+                  }
+                }}
+                style={{
+                  width: '60px',
+                  padding: '2px 5px',
+                  background: 'rgba(0,0,0,0.2)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  borderRadius: '4px',
+                  color: 'var(--primary)',
+                  fontWeight: 'bold',
+                  textAlign: 'center'
+                }}
+              />
+            </div>
           </div>
 
           <QuizCard
