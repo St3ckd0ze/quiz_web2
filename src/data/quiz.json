@@ -1292,7 +1292,7 @@
   },
   {
     "id": 94,
-    "question": "Was ist an folgender Middleware problematisch? (Die Nummern geben die Zeilennummern an.)\n1. export async function requiresAuthentic\n2. try {\n3.\n4.\n5.\n6.\nconst jwtString = req. cookies?.\nreq. userId = verifyJWT (jwtStrin\n} catch (err) {\nres. sendStatus(401);\n7.\n8. next ()\n9.}\nGeben Sie eine kurze Erklärung, also was bei Ausführung passiert und warum, sowie wie das Problem gelöst werden kann.",
+    "question": "Was ist an folgender **Middleware** problematisch?\n1. export async function requiresAuthentication(req, res, next) {\n2. \ttry {\n3. \t\tconst jwtString = req.cookies?.access_token;\n4. \t\treq.userId = verifyJWT(jwtString)\n5. \t} catch (err) {\n6. \t\tres.status(401);\n7. \t\tnext(err);\n8. \t}\n9. }\nGeben Sie eine kurze Erklärung, also was bei Ausführung passiert und warum, sowie wie das Problem gelöst werden kann.",
     "type": "open",
     "options": [],
     "answerText": "1. Im Fehlerfall wird eine Antwort verschickt (6) und dann zusätzlich in (8) next () aufgerufen. 2. Eine Antwort kann nur einmal verschickt werden. Das next () ist im besten Fall wirkungslos (wenn im weiteren ein Request-Handler erneut eine Antwort verschickt, ist dies wirkungslos), im schlimmsten Fall wird noch der Zustand des Servers verändert, was man hier nicht sieht. 3. Den Aufruf von next () nach (5) verschieben oder nach (6) ein return einfügen.",
