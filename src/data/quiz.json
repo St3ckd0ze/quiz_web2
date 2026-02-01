@@ -706,19 +706,34 @@
   },
   {
     "id": 55,
-    "question": "Ordnen Sie die folgenden Verfahren zum Speichern des JWT beim Client nach ihrer Sicherheit (keine, geringe oder Gefahr vor XSS)",
-    "type": "multiple_choice",
+    "question": "Ordnen Sie die folgenden Verfahren zum Speichern des JWT beim Client nach ihrer Sicherheit (keine, geringe oder Gefahr vor XSS) zu.",
+    "type": "matching",
     "options": [
-      "In einem HTTP-only Cookie",
-      "In einem normalen Cookie",
-      "In einer lokalen Variable"
+      "keine Gefahr vor XSS",
+      "Gefahr vor XSS",
+      "geringe Gefahr vor XSS"
     ],
-    "answerText": "a.keine Gefahr vor XSS b.Gefahr vor XSS c.geringe Gefahr vor XSS",
-    "correctIndices": [
-      0,
-      1,
-      2
-    ]
+    "leftItems": [
+      {
+        "id": "1",
+        "text": "In einem HTTP-only Cookie"
+      },
+      {
+        "id": "2",
+        "text": "In einem normalen Cookie"
+      },
+      {
+        "id": "3",
+        "text": "In einer lokalen Variable"
+      }
+    ],
+    "answerPairs": {
+      "1": "keine Gefahr vor XSS",
+      "2": "Gefahr vor XSS",
+      "3": "geringe Gefahr vor XSS"
+    },
+    "answerText": "",
+    "correctIndices": []
   },
   {
     "id": 56,
@@ -1392,6 +1407,150 @@
     "type": "open",
     "options": [],
     "answerText": "1.JWT besteht aus Header.Payload.Signatur 2.Payload ist nur Base64URL‑kodiert, nicht verschlüsselt 3.Payload-Teil kopieren und Base64URL dekodieren",
+    "correctIndices": []
+  },
+  {
+    "id": 106,
+    "question": "Gegeben sei folgende React-Funktionskomponente:\n```typescript\nexport async function Comp() {\nconst main = await loadMainData();\nreturn <p>{main?.content}</p>\n}\nLeider geht es nicht so einfach, wie Sie sicherlich wissen. Re-Implementieren Sie die Komponente so, dass sie funktioniert. Beachten Sie,\ndass die Daten nur einmal geladen werden sollen. Den JSX-Anteil können Sie so lassen.\n```",
+    "type": "code",
+    "options": [],
+    "answerText": "export function Comp() {\n    const [main,setMain] = useState(null);\n    useEffect(() => {\n        async function load() {\n            const main = await loadMainData();\n            setMain(main);\n        }\n        load();\n    }, []);\n    return <p>{main?.content}</p>\n}",
+    "correctIndices": []
+  },
+  {
+    "id": 107,
+    "question": "Schreiben Sie einen kleinen Test mit der Bibliothek Supertest, der prüft, dass die Route /api/hello eine Antwort mit einem JSON {\ngreeting: \"Hello\" } im Body zurückgibt. Verwenden Sie dafür jest. Sie können davon ausgehen, dass weitere benötigte Bibliotheken\nvorhanden sind (im Zweifel als Kommentar anmerken). Eine Anmeldung ist nicht nötig.\nEs geht hier um einen Test des Backends.\nSchreiben Sie den kompletten Test, inkl. imports (die Pfade sind nicht so relevant).",
+    "type": "code",
+    "options": [],
+    "answerText": "import app from \"../src/app\";\ntest(\"GET hello\", async () => {\n    const res = await supertest(app).get(\"/api/hello\");\n    expect(response.body).toEqual({ greeting: \"Hello\" });\n});",
+    "correctIndices": []
+  },
+  {
+    "id": 108,
+    "question": "Implementieren Sie einen Endpoint mit Express und der Bibliothek express-validator. Im Fokus steht dabei die Funktion matchedData --\nderen Einsatz soll demonstriert werden.\nImplementieren Sie in TypeScript\neinen Endpoint, der an einem Router TeamRouter angemeldet wird und mit dem ein \"Team\" erstellt werden kann. Der Endpoint ist\n/team (der Router ist ohne Pfad registriert).\nÜbergeben werden soll im Body des Requests ein JSON-Objekt mit den Feldern name (String) und trainer (ObjectID des Trainers).\nEine Fehlerbehandlung ist nicht nötig-- stattdessen müssen Sie Kommentare einfügen, wo diese Funktionalität umgesetzt werden\nwürde.\nEs ist keine Antwort zu erstellen und es sind keine weitere Funktionen der Anwendung aufzurufen -- stattdessen müssen Sie\nKommentare einfügen, wo diese Funktionalität umgesetzt werden würde.\nDie von matchedData vorher zwingend durchgeführte Funktionalität und der Einsatz von matchedData selbst muss umgesetzt werden.\nImports sind nicht nötig.\nKommentieren Sie den Code, um zu verdeutlichen, was an welcher Stelle passiert. Insbesondere soll klar werden, was matchedData macht.",
+    "type": "code",
+    "options": [],
+    "answerText": "TeamRouter.post(\"/team\",\n    body(\"trainer\").isMongoID(),\n    body(\"name\").isString(),\n    (req, res) => {\n        //hier Fehlerbehandlung\n        const data = matchedData(req);\n // hier folgen dann die Aufrufe im Service-Layer\n // und die Erstellung der Antwort\n    }\n);",
+    "correctIndices": []
+  },
+  {
+    "id": 109,
+    "question": "Gegeben sei folgender Code:\n```typescript\nfunction Bar() {\nreturn React.createElement(\"p\", { id: \"par1\"} ), \"Hello\")\n}\n'Übersetzen' Sie diesen Code nach JSX.\n```",
+    "type": "code",
+    "options": [],
+    "answerText": "function Bar() {\n\treturn (<p id=\"par1\">Hello</p>)\n}",
+    "correctIndices": []
+  },
+  {
+    "id": 110,
+    "question": "Sie möchten in einem JSX-Element `<ul>` die (String-) Elemente eines Arrays (Variable list) als eine$\nGeben Sie den Code an.",
+    "type": "code",
+    "options": [],
+    "answerText": "<ul>{list.map(e=> <li>e</li>)}</ul>",
+    "correctIndices": []
+  },
+  {
+    "id": 111,
+    "question": "Schreiben Sie einen kleinen Test mit der Bibliothek Supertest, der prüft, dass die Route /api/hello eine Antwort mit einem JSON {\ngreeting: \"Hello\" } im Body zurückgibt. Verwenden Sie dafür jest. Sie können davon ausgehen, dass weitere benötigte Bibliotheken\nvorhanden sind (im Zweifel als Kommentar anmerken). Eine Anmeldung ist nicht nötig.\nEs geht hier um einen Test des Backends.\nSchreiben Sie den kompletten Test, inkl. imports (die Pfade sind nicht so relevant).",
+    "type": "code",
+    "options": [],
+    "answerText": "import app from \"../src/app\"\ntest(\"GET hello\", async ()=>{\nconst res = await supertest(app).get(\"/api/hello\");\nexpect(response.body).toEqual({greeting: \"Hello\"});\n});",
+    "correctIndices": []
+  },
+  {
+    "id": 112,
+    "question": "Gegeben sei folgender Code:\n```typescript\nexport function Foo({a, b}: {a: number, b: string}) {\n// ...\nreturn <p></p>\n}\n```\nWie kann man die Funktion in JSX einbinden?",
+    "type": "code",
+    "options": [],
+    "answerText": "<Foo a={42} b=\"Hallo\" />., <Foo a={42} b={\"Hallo\"} />.",
+    "correctIndices": []
+  },
+  {
+    "id": 113,
+    "question": "Gegeben sei folgender Code:\n```typescript\nexport interface ITeam {\ntrainer: Types. ObjectId // verweist a name: string description?: string;\n}\n```\nGeben Sie das passende Mongoose-Schema an, das die Eigenschaften des Interfaces ITeam umsetzt.",
+    "type": "code",
+    "options": [],
+    "answerText": "const teamSchema = new Schema({\n    trainer: { type: Schema.Types.ObjectId, ref: 'User' },\n    name: { type: String, required: true },\n    description: String\n});",
+    "correctIndices": []
+  },
+  {
+    "id": 114,
+    "question": "Sie möchten in einem JSX-Element `<div>` eine Fallunterscheidung einbauen. Wenn (eine Variable) condition truthy ist, soll \"wahr\" angezeigt werden, sonst \"falsch\".\nGeben Sie den Code an.",
+    "type": "code",
+    "options": [],
+    "answerText": "<div>{condition ? \"Wahr\" : \"Falsch\"}</div>",
+    "correctIndices": []
+  },
+  {
+    "id": 115,
+    "question": "```typescript\nconst router = express. Router ();\napp. use (\"/a\" , funcUse)\napp. get (\"/a\", funcGet)\napp. post (\"/a\", funcPost)\n```\nGeben Sie **drei Beispielanfragen** an, die jeweils mit **unterschiedlichen Funktionen verarbeitet** werden und geben Sie an, welche\n**Funktionen** in welcher **Reihenfolge** aufgerufen werden bzw. theoretisch aufgerufen werden können.\nBeispielanfragen können Sie frei wählen, sie müssen nur die Unterschiede verdeutlichen. Es reicht eine kurze Skizze der Anfragen, es werden keine kompletten URLs benötigt.",
+    "type": "code",
+    "options": [],
+    "answerText": "1. GET /a, aufgerufen wird funcUse und (falls funcUse next aufruft) funcGet.\n2. POST /a, aufgerufen wird funcUse und (falls funcUse next aufruft) funcPost.\n3. PUT /a, aufgerufen wird nur funcUse, da es keine weitere Route für PUT gibt.",
+    "correctIndices": []
+  },
+  {
+    "id": 116,
+    "question": "Gegeben sei folgender Code:\n```typescript\nimport {Schema, model, Types} from \"mongoose\"\nconst TeamSchema = new Schema({\nname: String,\ncaptain: { type: Schema.Types.ObjectId, ref: 'Player' }\n});\nexport const Team('Team', teamSchema);\n```\nWie kann man syntaktisch ein neues Teams anlegen.",
+    "type": "code",
+    "options": [],
+    "answerText": "Team.create({ name: \"Hallo\"})",
+    "correctIndices": []
+  },
+  {
+    "id": 117,
+    "question": "Implementieren Sie eine Funktion im Service-Layer, die eine Anmeldung durchführt.\nDie Funktion soll anhand von Campus-ID und Passwort prüfen, ob ein Professor existiert und das Passwort korrekt ist.\nBei Erfolg soll die ID und die Rolle (\"a\" oder \"u\") zurückgegeben werden, andernfalls false.\n(login service layer)\nPrüft Campus-ID und Passwort, bei Erfolg ist success true\nund es wird die id und role (\"u\" oder \"a\") des Profs zurückgegeben\nFalls kein Prof mit gegebener Campus-ID existiert oder das Passwort falsch ist, wird nur\nsuccess mit falsch zurückgegeben. Aus Sicherheitsgründen wird kein weiterer Hinweis gegeben.",
+    "type": "code",
+    "options": [],
+    "answerText": "export async function login(campusID: string, password: string): Promise<{ id: string, role: \"a\" | \"u\" } | false> {\n \tconst prof= await Prof.findOne({campusID:campusID }).exec();\n \tif(!prof){\n \t\treturn false;\n \t}\n \tconst correctPassword= await prof.isCorrectPassword(password);\n \tif(!correctPassword){\n\t\treturn false;\n \t}\n\t return {id: prof.id, role:prof.admin? \"a\": \"u\"};\n}",
+    "correctIndices": []
+  },
+  {
+    "id": 118,
+    "question": "Implementieren Sie ein Mongoose-Schema, das das folgende TypeScript-Interface korrekt abbildet.\nBerücksichtigen Sie Pflichtfelder, optionale Felder, Default-Werte und Referenzen.\n```typescript\nexport interface IProdukt {\nname: string;\nbeschreibung?: string;\npreis: number;\naufLager: boolean; // Hier ohne '?' aber mit Default im Schema trotzdem okay\nhersteller: Types.ObjectId;\n}\n```",
+    "type": "code",
+    "options": [],
+    "answerText": "const produktSchema = new Schema<IProdukt>({\n // 'name' ist Pflichtfeld ohne '?' -> Regel 1\n name: { type: String, required: true },\n // 'beschreibung' ist optional mit '?' -> Regel 2\n beschreibung: { type: String },\n // 'preis' ist Pflichtfeld ohne '?' -> Regel 1\n preis: { type: Number, required: true },\n // 'aufLager' soll einen Standardwert haben -> Regel 3\n aufLager: { type: Boolean, default: true },\n // 'hersteller' ist eine Referenz und Pflichtfeld -> Regel 4\n hersteller: { type: Schema.Types.ObjectId, ref: 'Hersteller', required: true }\n});",
+    "correctIndices": []
+  },
+  {
+    "id": 119,
+    "question": "Implementieren Sie eine Express-Middleware, die prüft, ob ein gültiges JWT-Cookie vorhanden ist.\nBei Erfolg soll die User-ID im Request gespeichert werden, bei Fehlern soll mit Status 401 reagiert werden.",
+    "type": "code",
+    "options": [],
+    "answerText": "export async function requiresAuthentication(req, res, next) {\n try {\n const jwtString = req.cookies?.access_token;\n req.userId = verifyJWT(jwtString)\nnext()\n } catch (err) {\n res.sendStatus(401);\n }\n }.,\nexport async function requiresAuthentication(req, res, next) {\n try {\n const jwtString = req.cookies?.access_token;\n req.userId = verifyJWT(jwtString)\nnext()\n } catch (err) {\n    } catch (err) {\n        res.status(401).send();\n        // next(err); // Optional, je nach Error-Handling-Strategie\n    }\n}",
+    "correctIndices": []
+  },
+  {
+    "id": 120,
+    "question": "Implementieren Sie eine React-Funktionskomponente, die beim ersten Rendern asynchron Daten lädt\nund den geladenen Inhalt darstellt. Die Daten sollen nur einmal geladen werden.",
+    "type": "code",
+    "options": [],
+    "answerText": "(funktionskomponent)\nexport function Comp() {\nconst [main,setMain] = useState(null);\nuseEffect(() => {\nasync function load() {\nconst main = await loadMainData();\nsetMain(main);\n}\nload();\n}, []);\nreturn <p>{main?.content}</p>\n//<Button onClick={() => setSelectedMain(null)}>Zurück</Button>\n}",
+    "correctIndices": []
+  },
+  {
+    "id": 121,
+    "question": "Implementieren Sie den Export eines Express-Routers und binden Sie diesen korrekt\nin einer zentralen app.ts ein, inklusive JSON-Middleware.",
+    "type": "code",
+    "options": [],
+    "answerText": "// Router exportieren, damit app.ts ihn verwenden kann\nexport default userRouter;\n(app.ts)\napp.use(express.json)\n//regestrierung von routes\napp.use(\"/api/user\",userRouter);\napp.get(\"/api/user\",userRouter);",
+    "correctIndices": []
+  },
+  {
+    "id": 122,
+    "question": "Implementieren Sie einen POST-Endpoint zur Erstellung eines Benutzers.\nValidieren Sie die Eingaben, prüfen Sie auf Fehler und verwenden Sie matchedData,\num ausschließlich validierte Daten weiterzuverarbeiten.",
+    "type": "code",
+    "options": [],
+    "answerText": "(endpoint)\n// Benötigte Imports für Express und den Validator\nimport { Router, Request, Response } from 'express';\nimport { body, validationResult, matchedData } from 'express-validator';\n// 1. Router erstellen (fester Bestandteil)\nconst userRouter = Router();\n// 2. Endpoint definieren: Ein Benutzer soll erstellt werden\n// Methode ist POST, der Pfad auf diesem Router ist nur \"/\"\nuserRouter.post('/',\n // 2a. Validierungs-Middleware für die erwarteten Daten\n body('email').isEmail().withMessage('Bitte geben Sie eine gültige E-Mail an.'),\n body('password')isString.().isLength({ min: 8 }).withMessage('Das Passwort muss\nmindestens 8 Zeichen lang sein.'),\n // 2b. Die eigentliche Handler-Funktion //synchron nur wenn eine Funktion\naufgerufen wird.\n async(req: Request, res: Response) => {\n\n // 3. Im Handler: Validierungsfehler prüfen (fester Bestandteil)\n const errors = validationResult(req);\n if (!errors.isEmpty()) {\n // Wenn Fehler gefunden wurden, Anfrage mit Status 400 beenden\n return res.status(400).json({ errors: errors.array() });\n }\n // 4. Im Handler: Gesäuberte Daten holen (fester Bestandteil)\n // matchedData() nimmt NUR die Felder, die oben validiert wurden.\n // Zusätzliche Felder wie z.B. \"isAdmin\" werden ignoriert.\n const saubereDaten = matchedData(req);\n // 5. Im Handler: Geschäftslogik (hier nur simuliert)\n // Normalerweise würden Sie hier den Service aufrufen:\n // const neuerBenutzer = await UserService.createUser(saubereDaten);\n //try{}\n        // 6. Im Handler: Erfolgsantwort senden (fester Bestandteil)\n        // Status 201 bedeutet \"Created\"\n        // res.status(201).send(neuerBenutzer); // Variable muss natürlich existieren\n        res.status(201).json({ message: \"User created\" }); // Platzhalter\n    }\n);\n//catch (err) {\nres.sendStatus(400)\nnext(err)\n}",
+    "correctIndices": []
+  },
+  {
+    "id": 123,
+    "question": "Implementieren Sie einen Backend-Test mit Supertest und Jest,\nder eine GET-Anfrage ausführt und Statuscode sowie Response-Body überprüft.",
+    "type": "code",
+    "options": [],
+    "answerText": "(supertest)\n// 1. IMPORTS (immer am Anfang)\n// Sie importieren supertest selbst und Ihre Express-App aus der app.ts\nimport supertest from 'supertest';\nimport app from '../src/app';\n// 2. DER TEST-BLOCK (die Jest-Hülle)\n// Jeder Test wird in eine test(...)-Funktion verpackt.\n// 'async' ist wichtig, weil Anfragen Zeit brauchen.\ntest(\"Eine klare Beschreibung, was dieser Test tut\", async () => {\n // 3. AKTION: Die HTTP-Anfrage senden\n // Hier wird supertest mit Ihrer App initialisiert und die Anfrage abgeschickt.\n const response = await supertest(app).get(\"/api/beispiel\");\n // 4. ÜBERPRÜFUNG: Die Antwort kontrollieren\n // Mit expect() wird geprüft, ob die Antwort den Erwartungen entspricht.\n expect(response.status).toBe(200); // Ist der Statuscode korrekt?v\n expect(response.body).toEqual({ nachricht: \"Erfolg\" }); // Ist der Inhalt im Body\nkorrekt?\n\n});",
     "correctIndices": []
   }
 ]

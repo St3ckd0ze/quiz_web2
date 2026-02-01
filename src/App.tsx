@@ -49,11 +49,19 @@ function App() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }, [gameState, currentQuestionIndex, shuffledQuestions, userAnswers]);
 
-  const startQuiz = () => {
-    // 1. Parse and deep copy raw data
-    const deepCopiedQuestions: Question[] = JSON.parse(JSON.stringify(quizData));
+  const startQuiz = (mode: 'standard' | 'code') => {
+    // 1. Filter questions based on mode
+    let initialQuestions = quizData;
+    if (mode === 'standard') {
+      initialQuestions = quizData.filter(q => q.type !== 'code');
+    } else if (mode === 'code') {
+      initialQuestions = quizData.filter(q => q.type === 'code');
+    }
 
-    // 2. Shuffle Options within each question if it's multiple choice
+    // 2. Parse and deep copy raw data
+    const deepCopiedQuestions: Question[] = JSON.parse(JSON.stringify(initialQuestions));
+
+    // 3. Shuffle Options within each question if it's multiple choice
     const processedQuestions = deepCopiedQuestions.map(q => {
       if (q.type !== 'multiple_choice' || !q.options || q.options.length === 0) {
         return q;
@@ -83,7 +91,7 @@ function App() {
       };
     });
 
-    // 3. Shuffle the order of questions themselves
+    // 4. Shuffle the order of questions themselves
     const shuffled = processedQuestions.sort(() => 0.5 - Math.random());
 
     setShuffledQuestions(shuffled);
@@ -131,13 +139,30 @@ function App() {
         <div className="card" style={{ textAlign: 'center' }}>
           <h1>Web Engineering II Quiz</h1>
           <p style={{ margin: '2rem 0', opacity: 0.8 }}>
-            Prepare for your exam with {quizData.length} interactive questions.
-            <br />
-            Includes Multiple Choice and Open Questions.
+            Wähle einen Modus für die Prüfungsvorbereitung:
           </p>
-          <button className="btn btn-primary" onClick={startQuiz} style={{ fontSize: '1.2rem', padding: '1rem 2rem' }}>
-            Start Quiz
-          </button>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'center' }}>
+            <button
+              className="btn btn-primary"
+              onClick={() => startQuiz('standard')}
+              style={{ fontSize: '1.2rem', padding: '1rem 2rem', minWidth: '300px' }}
+            >
+              Standard Quiz
+            </button>
+
+            <button
+              className="btn btn-secondary"
+              onClick={() => startQuiz('code')}
+              style={{ fontSize: '1.2rem', padding: '1rem 2rem', minWidth: '300px' }}
+            >
+              Coding Challenges
+            </button>
+          </div>
+
+          <p style={{ marginTop: '2rem', fontSize: '0.9rem', opacity: 0.5 }}>
+            {quizData.length} Fragen insgesamt verfügbar.
+          </p>
         </div>
       )}
 

@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import type { Question, UserAnswer } from '../types';
+import { CodeQuestion } from './CodeQuestion';
+import ReactMarkdown from 'react-markdown';
+import remarkBreaks from 'remark-breaks';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { MatchingQuestion } from './MatchingQuestion';
 
 interface QuizCardProps {
     question: Question;
@@ -78,7 +84,7 @@ export const QuizCard: React.FC<QuizCardProps> = ({
         <div className="card">
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
                 <h3 className="text-secondary">Question {question.id}</h3>
-                {isRevealed && (
+                {isRevealed && question.type !== 'code' && question.type !== 'matching' && (
                     <span style={{
                         color: isCorrect ? 'var(--success)' : 'var(--error)',
                         fontWeight: 'bold'
@@ -88,7 +94,47 @@ export const QuizCard: React.FC<QuizCardProps> = ({
                 )}
             </div>
 
-            <p className="question-text">{question.question}</p>
+            {question.type !== 'code' && question.type !== 'matching' && (
+                <div className="question-text">
+                    <ReactMarkdown
+                        remarkPlugins={[remarkBreaks]}
+                        components={{
+                            code({ className, children, ...props }) {
+                                const match = /language-(\w+)/.exec(className || '');
+                                // Extract ref to avoid TS error
+                                const { ref, ...rest } = props as any;
+
+                                return match ? (
+                                    <SyntaxHighlighter
+                                        style={vscDarkPlus as any}
+                                        language={match[1]}
+                                        PreTag="div"
+                                        {...rest}
+                                    >
+                                        {String(children).replace(/\n$/, '')}
+                                    </SyntaxHighlighter>
+                                ) : (
+                                    <code className={className} {...props}>
+                                        {children}
+                                    </code>
+                                );
+                            }
+                        }}
+                    >
+                        {question.question}
+                    </ReactMarkdown>
+                </div>
+            )}
+
+            {/* Also use markdown for Code Question text? Yes, standardization is good. 
+               CodeQuestion usually renders its own text? Wait, in previous logic CodeQuestion rendered ONLY the editor?
+               Looking at CodeQuestion.tsx: "return ( <div...> <p>{question.question}</p> ... )" -> It DOES render the question text.
+               We should update CodeQuestion.tsx too OR remove it from there and render it here?
+               Previous logic: `question.type !== 'code'` blocked rendering here.
+               So CodeQuestion renders it. I should update CodeQuestion.tsx as well!
+               
+               For now, let's keep QuizCard handling non-code, non-matching.
+            */}
 
             {/* Multiple Choice Options */}
             {question.type === 'multiple_choice' && (
@@ -119,8 +165,47 @@ export const QuizCard: React.FC<QuizCardProps> = ({
                 </div>
             )}
 
-            {/* Actions Area */}
-            {!isRevealed ? (
+            {/* Code Question */}
+            {question.type === 'code' && (
+                <CodeQuestion
+                    question={question}
+                    initialAnswer={savedAnswer?.userResponse}
+                    onAnswer={(correct, code) => {
+                        setIsCorrect(correct);
+                        setIsRevealed(true);
+                        onAnswer({
+                            questionId: question.id,
+                            selectedIndices: [],
+                            isCorrect: correct,
+                            isRevealed: true,
+                            userResponse: code
+                        });
+                    }}
+                />
+            )}
+
+            {/* Matching Question */}
+            {question.type === 'matching' && (
+                <MatchingQuestion
+                    question={question}
+                    initialAnswers={savedAnswer?.matchingAnswers}
+                    isRevealed={isRevealed || !!savedAnswer?.isRevealed}
+                    onAnswer={(correct, answers) => {
+                        setIsCorrect(correct);
+                        setIsRevealed(true);
+                        onAnswer({
+                            questionId: question.id,
+                            selectedIndices: [],
+                            isCorrect: correct,
+                            isRevealed: true,
+                            matchingAnswers: answers
+                        });
+                    }}
+                />
+            )}
+
+            {/* Actions Area (Only for non-code/non-matching questions) */}
+            {question.type !== 'code' && question.type !== 'matching' && !isRevealed ? (
                 <div style={{ marginTop: '2rem' }}>
                     {question.type === 'multiple_choice' ? (
                         <button
@@ -139,7 +224,7 @@ export const QuizCard: React.FC<QuizCardProps> = ({
                         </button>
                     )}
                 </div>
-            ) : (
+            ) : question.type !== 'code' && question.type !== 'matching' ? (
                 <div className="answer-reveal">
                     {question.type === 'multiple_choice' ? (
                         <div>
@@ -191,7 +276,7 @@ export const QuizCard: React.FC<QuizCardProps> = ({
                         </div>
                     )}
                 </div>
-            )}
+            ) : null}
 
             {/* Navigation Footer */}
             <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem', paddingTop: '1rem', borderTop: '1px solid var(--glass-border)' }}>
