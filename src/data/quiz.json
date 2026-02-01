@@ -706,7 +706,7 @@
   },
   {
     "id": 55,
-    "question": "Ordnen Sie die folgenden Verfahren zum Speichern des JWT beim Client nach ihrer Sicherheit.",
+    "question": "Ordnen Sie die folgenden Verfahren zum Speichern des JWT beim Client nach ihrer Sicherheit (keine, geringe oder Gefahr vor XSS)",
     "type": "multiple_choice",
     "options": [
       "In einem HTTP-only Cookie",
@@ -1364,7 +1364,7 @@
   },
   {
     "id": 102,
-    "question": "Welche Eigenschaft ist für eine Hashing-Funktion für kryptographische Anwendungen beim Signieren von Public-Keys im Allgemeinen relevant?\nGeben Sie nur den Fachbegriff an, ohne weitere Zusatze oder Erklärungen.",
+    "question": "Was ist REST? Das Akronym muss nicht erklärt werden, geben Sie an, was REST ist und welche wichtigen Aspekte es definiert. Stichpunkte genügen",
     "type": "open",
     "options": [],
     "answerText": "1.REST ist ein Architekturstil für Web-APIs 2.Ressourcen werden über URLs und HTTP-Methoden angesprochen 3.Kommunikation ist zustandslos (stateless)",
