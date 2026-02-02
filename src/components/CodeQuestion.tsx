@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import type { Question } from '../types';
-import { compareCode } from '../utils/codeComparison';
-import ReactMarkdown from 'react-markdown';
-import remarkBreaks from 'remark-breaks';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { compareCode, findFirstDiffLine } from '../utils/codeComparison';
+import ReactMarkdown from 'react-markdown';
+import remarkBreaks from 'remark-breaks';
 
 interface CodeQuestionProps {
     question: Question;
@@ -15,18 +15,39 @@ interface CodeQuestionProps {
 export function CodeQuestion({ question, onAnswer, initialAnswer = '' }: CodeQuestionProps) {
     const [userCode, setUserCode] = useState(initialAnswer);
     const [feedback, setFeedback] = useState<'idle' | 'correct' | 'incorrect'>('idle');
+    const [mismatchLine, setMismatchLine] = useState<number | null>(null);
     const [showSolution, setShowSolution] = useState(false);
 
     // Reset state when question changes
     useEffect(() => {
         setUserCode(initialAnswer);
         setFeedback('idle');
+        setMismatchLine(null);
         setShowSolution(false);
     }, [question.id]);
 
     const handleCheck = () => {
         const isCorrect = compareCode(userCode, question.answerText);
         setFeedback(isCorrect ? 'correct' : 'incorrect');
+
+        if (!isCorrect) {
+            // Find mismatch line. Handle potential multiple solutions
+            const possibleSolutions = question.answerText.split(/\.,\s*/);
+            let bestLine = 0;
+
+            for (const sol of possibleSolutions) {
+                const line = findFirstDiffLine(userCode, sol);
+                if (line === null) { // This shouldn't happen if compareCode was false, but for safety
+                    bestLine = 0;
+                    break;
+                }
+                if (line > bestLine) bestLine = line;
+            }
+            setMismatchLine(bestLine || 1);
+        } else {
+            setMismatchLine(null);
+        }
+
         onAnswer(isCorrect, userCode);
     };
 
@@ -98,7 +119,12 @@ export function CodeQuestion({ question, onAnswer, initialAnswer = '' }: CodeQue
 
             {feedback === 'incorrect' && (
                 <div style={{ color: 'salmon', marginTop: '10px' }}>
-                    <strong>❌ Leider nicht ganz.</strong> Versuche es noch einmal oder schau dir die Lösung an.
+                    <strong>❌ Leider nicht ganz.</strong>
+                    {mismatchLine && (
+                        <span> Fehler wahrscheinlich in <strong>Zeile {mismatchLine}</strong>.</span>
+                    )}
+                    <br />
+                    Versuche es noch einmal oder schau dir die Lösung an.
                 </div>
             )}
 
