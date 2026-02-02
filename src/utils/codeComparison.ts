@@ -17,19 +17,26 @@ export function normalizeCode(code: string): string {
     // 3. Normalize quotes (all to single quotes)
     clean = clean.replace(/"/g, "'");
 
-    // 4. Remove all whitespace (including newlines) to be extremely forgiving
+    // 4. Case-insensitivity (as requested by user)
+    clean = clean.toLowerCase();
+
+    // 5. Remove semicolons at the end of lines (as requested by user)
+    // This handles multi-line blocks correctly.
+    clean = clean.replace(/;[ \t]*(\r?\n|$)/g, '$1');
+
+    // 6. Remove all whitespace (including newlines) to be extremely forgiving
     // OR collapse multiple whitespace into one. 
     // Let's stick to collapsing to keep some token separation, 
     // BUT also remove spaces around symbols.
     clean = clean.replace(/\s+/g, ' ');
 
-    // 5. Remove spaces around common punctuation/operators
+    // 7. Remove spaces around common punctuation/operators
     clean = clean.replace(/\s*([=+\-*/<>!&|{}[\];(),:])\s*/g, '$1');
 
-    // 6. Remove trailing semicolons for forgiving ending
+    // 8. Remove trailing semicolons for forgiving ending (extra safety)
     clean = clean.replace(/;+$/, '');
 
-    // 7. Trim
+    // 9. Trim
     return clean.trim();
 }
 
